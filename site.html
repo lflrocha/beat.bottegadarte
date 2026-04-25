@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottega D'Arte | Estúdio de Criação e Produção Cultural</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;700&family=Syne:wght@700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: 'var(--accent)',
+                        surface: 'var(--surface)',
+                        textBase: 'var(--text-base)',
+                        bgBase: 'var(--bg-base)',
+                    },
+                    fontFamily: {
+                        display: 'var(--font-display)',
+                        body: 'var(--font-body)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg-base: #F2ECE4;
+            --text-base: #2A2622;
+            --accent: #B8860B;
+            --surface: rgba(42, 38, 34, 0.08);
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Outfit', sans-serif;
+            --tracking-title: -0.05em;
+            --weight-title: 800;
+            --font-scale: 100%;
+            --lh-hero: 0.95;
+            --logo-standard: 1.4rem;
+            --a11y-scale: 1;
+
+            --vault-closed: 80px;
+            --vault-open: 60vw;
+            --nav-left: calc(var(--vault-closed) + 2rem);
+            --content-left: calc(var(--nav-left) + 4rem);
+            --safe-right: 7rem;
+        }
+
+        @media (min-width: 1024px) {
+            :root {
+                --nav-left: calc(var(--vault-closed) + 2.5rem);
+                --content-left: calc(var(--nav-left) + 6rem);
+                --safe-right: 8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --vault-closed: 50px;
+                --vault-open: 85vw;
+                --nav-left: calc(var(--vault-closed) + 1.25rem);
+                --content-left: var(--nav-left);
+                --safe-right: 1.5rem;
+            }
+        }
+
+        @media (pointer: fine) {
+            html, body, a, button, input { cursor: none !important; }
+        }
+
+        /* Removidas as transições de cor globais pesadas. A cor muda instantaneamente por baixo do shutter! */
+        html, body {
+            overflow-x: hidden;
+            font-size: var(--font-scale);
+            background-color: var(--bg-base);
+            color: var(--text-base);
+            font-family: var(--font-body);
+            width: 100%;
+            margin: 0; padding: 0;
+            -webkit-font-smoothing: antialiased;
+            user-select: none;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        #edge-vault::-webkit-scrollbar { display: none; }
+
+        .theme-vibrant { --bg-base: #0500FF; --text-base: #FFFFFF; --accent: #FF00FF; --surface: rgba(255, 255, 255, 0.2); --font-display: 'Syne', sans-serif; --tracking-title: -0.06em; --weight-title: 900; }
+        .theme-light { --bg-base: #F7F3EB; --text-base: #3E2723; --accent: #A84820; --surface: rgba(0, 0, 0, 0.05); --font-display: 'Cormorant Garamond', serif; --tracking-title: -0.01em; --weight-title: 300; }
+        .theme-elenco { --bg-base: #0D0D0D; --text-base: #FFFFFF; --accent: #C3FF00; --surface: rgba(255, 255, 255, 0.1); --font-display: 'Space Mono', monospace; --tracking-title: -0.05em; --weight-title: 700; }
+
+        .theme-elenco .hero-title { color: color-mix(in srgb, var(--accent) 15%, transparent); -webkit-text-stroke: 2px var(--accent); }
+        .theme-elenco .hero-title::after {
+            content: ''; position: absolute; inset: -15px -25px;
+            border: 1px dashed color-mix(in srgb, var(--accent) 30%, transparent);
+            z-index: -1; pointer-events: none;
+        }
+
+        @keyframes freneticBlink {
+            0%, 100% { -webkit-text-stroke-color: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
+            50% { -webkit-text-stroke-color: rgba(195, 255, 0, 0.15); filter: drop-shadow(0 0 0px transparent); }
+        }
+
+        .theme-elenco .flicker-1 { animation: freneticBlink 0.12s infinite alternate; }
+        .theme-elenco .flicker-2 { animation: freneticBlink 0.08s infinite alternate-reverse; }
+        .theme-elenco .flicker-3 { animation: freneticBlink 0.25s infinite alternate; }
+        .theme-elenco .flicker-4 { animation: freneticBlink 0.15s infinite alternate-reverse; }
+        .theme-elenco .flicker-5 { animation: freneticBlink 0.18s infinite; }
+
+        #blueprint-dot {
+            position: absolute; width: 8px; height: 8px; background: #fff; border-radius: 50%;
+            box-shadow: 0 0 15px 8px var(--accent), 0 0 30px 15px var(--accent); z-index: 20; pointer-events: none;
+        }
+
+        .orbit-square { animation: orbitSquare 4s linear infinite; }
+        @keyframes orbitSquare {
+            0%   { top: -19px; left: -29px; transform: scale(1); }
+            25%  { top: -19px; left: calc(100% + 21px); transform: scale(1); }
+            50%  { top: calc(100% + 11px); left: calc(100% + 21px); transform: scale(1); }
+            75%  { top: calc(100% + 11px); left: -29px; transform: scale(1); }
+            100% { top: -19px; left: -29px; transform: scale(1); }
+        }
+
+        .orbit-organic { animation: orbitOrganic 3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite; }
+        @keyframes orbitOrganic {
+            0%   { top: 50%; left: -25px; transform: scale(1); }
+            12.5%{ top: 15%; left: 15%; transform: scale(1.2); }
+            25%  { top: -5px; left: 50%; transform: scale(1.4); }
+            37.5%{ top: 15%; left: 85%; transform: scale(1.2); }
+            50%  { top: 50%; left: calc(100% + 15px); transform: scale(1); }
+            62.5%{ top: 85%; left: 85%; transform: scale(0.7); }
+            75%  { top: calc(100% + 5px); left: 50%; transform: scale(0.4); }
+            87.5%{ top: 85%; left: 15%; transform: scale(0.7); }
+            100% { top: 50%; left: -25px; transform: scale(1); }
+        }
+
+        .theme-elenco #s-title { color: transparent; -webkit-text-stroke: 1.5px var(--text-base); }
+        .theme-elenco #grid-content > div {
+            border: 1px solid color-mix(in srgb, var(--text-base) 20%, transparent) !important;
+            padding: 2.5rem !important; position: relative; transition: all 0.3s ease;
+        }
+        .theme-elenco #grid-content > div::before {
+            content: '[ SYS.MOD ]'; position: absolute; top: 1rem; right: 1.5rem;
+            font-size: 10px; font-family: var(--font-display); color: var(--accent); opacity: 0.5;
+        }
+        .theme-elenco #grid-content > div:hover {
+            border-color: var(--accent) !important; background: color-mix(in srgb, var(--text-base) 5%, transparent);
+        }
+
+        #custom-cursor {
+            position: fixed; top: 0; left: 0; margin-top: -8px; margin-left: -8px;
+            pointer-events: none; z-index: 9999999; will-change: transform;
+            display: flex; align-items: center; justify-content: center;
+            transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), height 0.3s cubic-bezier(0.19, 1, 0.22, 1), background 0.3s, border 0.3s, opacity 0.3s, border-radius 0.3s;
+        }
+        .cursor-monochrome { width: 16px; height: 16px; border: 1.5px solid var(--accent); border-radius: 50%; }
+        .cursor-vibrant { width: 32px; height: 32px; background: #fff; border-radius: 50%; mix-blend-mode: difference; }
+        .cursor-light { width: 20px; height: 20px; border: 1px solid var(--accent); border-radius: 0; transform: rotate(45deg); }
+        .cursor-elenco { width: 18px; height: 18px; border-left: 2px solid var(--accent); border-top: 2px solid var(--accent); border-radius: 0; }
+
+        #custom-cursor.c-hover { width: 60px; height: 60px; margin-top: -30px; margin-left: -30px; opacity: 0.2; background: var(--accent); border: none; transform: rotate(0deg); border-radius: 50%; }
+        #custom-cursor.c-grab { width: 40px; height: 40px; margin-top: -20px; margin-left: -20px; border-color: var(--accent); border-width: 4px; border-radius: 50%; transform: scale(0.8); background: transparent; opacity: 1;}
+
+        .align-wall { padding-left: var(--nav-left); padding-right: var(--safe-right); }
+        .align-text { padding-left: var(--content-left); padding-right: var(--safe-right); }
+
+        .a11y-reading { font-size: calc(1.125rem * var(--a11y-scale)); transition: font-size 0.3s; }
+        .a11y-title { font-size: calc(1.5rem * var(--a11y-scale)); transition: font-size 0.3s; }
+        .a11y-hero-desc { font-size: calc(1.5rem * var(--a11y-scale)); transition: font-size 0.3s; }
+        .a11y-subtitle { font-size: calc(1.25rem * var(--a11y-scale)); transition: font-size 0.3s; }
+
+        @media (min-width: 768px) {
+            .a11y-reading { font-size: calc(1.25rem * var(--a11y-scale)); }
+            .a11y-title { font-size: calc(1.875rem * var(--a11y-scale)); }
+            .a11y-hero-desc { font-size: calc(2.25rem * var(--a11y-scale)); }
+            .a11y-subtitle { font-size: calc(1.5rem * var(--a11y-scale)); }
+        }
+
+        body.vault-open { overflow: hidden !important; }
+
+        body.viewer-open {
+            overflow: hidden !important;
+            touch-action: none !important;
+            overscroll-behavior: none !important;
+        }
+
+        #site-wrapper {
+            position: relative; width: 100%; min-height: 100vh; background-color: transparent; z-index: 10;
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), filter 1s cubic-bezier(0.19, 1, 0.22, 1);
+            will-change: transform, filter;
+        }
+        body.vault-open #site-wrapper {
+            transform: translateX(var(--vault-open)); pointer-events: none; filter: brightness(0.5) blur(8px);
+        }
+
+        header {
+            position: fixed; top: 0; left: 0; width: 100vw; z-index: 1500;
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+            background: color-mix(in srgb, var(--bg-base) 80%, transparent); backdrop-filter: blur(15px);
+            border-bottom: 1px solid color-mix(in srgb, var(--text-base) 5%, transparent); pointer-events: auto;
+            will-change: transform;
+        }
+        body.vault-open header { transform: translateX(var(--vault-open)); }
+
+        .header-nav-right { transition: opacity 0.5s ease, transform 0.5s ease; }
+        body.vault-open .header-nav-right { opacity: 0; pointer-events: none; transform: translateX(15px); }
+
+        #main-logo { font-size: var(--logo-standard); font-family: var(--font-display); font-weight: 900; letter-spacing: -0.04em; text-transform: uppercase; }
+
+        #edge-vault {
+            position: fixed; left: 0; top: 45vh; bottom: 0;
+            width: var(--vault-closed); background-color: var(--bg-base); color: var(--text-base);
+            z-index: 1800; cursor: pointer; border-top-right-radius: 12px;
+            box-shadow: 15px 0 40px rgba(0,0,0,0.15); border-right: 1px solid var(--surface);
+            transition: width 1s cubic-bezier(0.19, 1, 0.22, 1), top 1s cubic-bezier(0.19, 1, 0.22, 1), border-radius 1s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow: hidden; pointer-events: auto;
+            will-change: width, top, border-radius, transform;
+        }
+        body.vault-open #edge-vault {
+            top: 0; width: var(--vault-open); border-top-right-radius: 0;
+            cursor: default; overflow-y: auto;
+        }
+
+        .vault-closed-ui {
+            position: absolute; inset: 0; width: var(--vault-closed);
+            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+            padding: 2.5rem 0; opacity: 1; transition: opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        body.vault-open .vault-closed-ui { opacity: 0; pointer-events: none; }
+
+        .vault-open-ui {
+            position: absolute; top: 0; left: 0; width: var(--vault-open); min-height: 100%;
+            padding: 6rem 4rem 4rem 4rem; opacity: 0; pointer-events: none;
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1); display: flex; flex-direction: column;
+        }
+        @media (max-width: 1023px) { .vault-open-ui { padding: 6rem 1.5rem 3rem 1.5rem; } }
+        body.vault-open .vault-open-ui { opacity: 1; pointer-events: auto; transition-delay: 0s; }
+
+        .magic-eye-mini {
+            width: 36px; height: 36px; border-radius: 50%; overflow: hidden;
+            border: 1px solid var(--surface); transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            background: color-mix(in srgb, var(--text-base) 10%, transparent); margin: 0.3rem 0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        #edge-vault:hover .magic-eye-mini { transform: scale(1.1); border-color: var(--accent); }
+
+        .vault-label-vertical {
+            writing-mode: vertical-rl; transform: rotate(180deg);
+            font-size: 10px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.4em; color: var(--text-base); opacity: 0.5; transition: color 0.8s ease, opacity 0.3s;
+        }
+        #edge-vault:hover .vault-label-vertical { opacity: 1; color: var(--accent); }
+
+        .vault-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 3rem; }
+        @media (min-width: 1280px) { .vault-grid { grid-template-columns: 1fr 1fr; } }
+
+        .olho-magico-container {
+            width: 160px; height: 160px;
+            border-radius: 50%; position: relative;
+            padding: 8px; border: 1px solid var(--surface);
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            cursor: pointer; margin: 0 auto;
+        }
+        .olho-magico-container:hover {
+            border-color: var(--accent); transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .olho-magico {
+            width: 100%; height: 100%; border-radius: 50%;
+            background-color: var(--bg-base); overflow: hidden; position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.6), inset 0 0 5px rgba(255,255,255,0.2);
+        }
+        .olho-magico::after {
+            content: ''; position: absolute; inset: 0; border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.3) 0%, transparent 60%);
+            pointer-events: none; z-index: 10;
+        }
+        .thumb-frame {
+            width: 100%; height: 100%;
+            background-size: 160%;
+            background-position: center; background-repeat: no-repeat;
+            transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease;
+            filter: grayscale(80%) contrast(1.2);
+            transform: scale(1.2);
+        }
+        .olho-magico-container:hover .thumb-frame {
+            filter: grayscale(0%) contrast(1.1);
+            transform: scale(1);
+        }
+
+        #piece-viewer {
+            position: fixed; inset: 0; z-index: 99999;
+            background: color-mix(in srgb, var(--bg-base) 95%, transparent);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.6s ease;
+            overflow: hidden;
+            cursor: ew-resize;
+            touch-action: none !important;
+            overscroll-behavior: none !important;
+            -webkit-user-drag: none; user-select: none;
+        }
+        #piece-viewer.viewer-active { opacity: 1; pointer-events: auto; }
+
+        .prism-bg {
+            position: absolute; inset: 0; z-index: 1; overflow: hidden;
+            opacity: 0.8;
+        }
+        .prism-orb {
+            position: absolute; border-radius: 50%;
+            mix-blend-mode: color-burn; opacity: 0.6;
+            will-change: transform;
+        }
+        body.theme-elenco .prism-orb { mix-blend-mode: screen; opacity: 0.3; }
+        body.theme-vibrant .prism-orb { mix-blend-mode: screen; opacity: 0.8; }
+
+        .orb-1 { width: 70vw; height: 70vw; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); top: -20%; left: -10%; animation: floatOrb 20s infinite alternate linear; }
+        .orb-2 { width: 60vw; height: 60vw; background: radial-gradient(circle, var(--text-base) 0%, transparent 70%); bottom: -10%; right: -10%; animation: floatOrb 25s infinite alternate-reverse linear; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(10vw, 10vh); }
+        }
+
+        .viewer-glass-card {
+            position: relative; z-index: 10;
+            width: 90vw; max-width: 1100px; height: 85vh; max-height: 750px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 40%, transparent), color-mix(in srgb, var(--surface) 10%, transparent));
+            backdrop-filter: blur(12px);
+            border: 1px solid color-mix(in srgb, var(--text-base) 10%, transparent);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            display: flex; flex-direction: row; align-items: stretch; justify-content: space-between;
+            padding: 3rem; overflow: hidden;
+            transition: background 0.8s ease, border-color 0.8s ease;
+        }
+
+        @media (max-width: 1024px) {
+            .viewer-glass-card { flex-direction: column; overflow-y: auto; padding: 2rem; }
+        }
+
+        .viewer-side-panel {
+            flex: 1; z-index: 20; display: flex; flex-direction: column;
+            color: var(--text-base); pointer-events: auto; max-width: 350px;
+            justify-content: space-between; cursor: default;
+        }
+
+        #viewer-360-container {
+            position: relative; flex: 1.5;
+            display: flex; align-items: center; justify-content: center;
+            touch-action: none; z-index: 15;
+            max-width: 600px; margin: 0 auto; height: 100%; pointer-events: none;
+        }
+        #viewer-img {
+            width: 100%; height: 100%; object-fit: contain; pointer-events: none; user-select: none;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2)); -webkit-user-drag: none;
+        }
+
+        .drag-hint {
+            position: absolute; bottom: 5%; left: 50%; transform: translateX(-50%);
+            display: flex; align-items: center; gap: 1rem;
+            opacity: 0.5; transition: opacity 0.3s; color: var(--text-base);
+            background: color-mix(in srgb, var(--bg-base) 80%, transparent);
+            padding: 8px 16px; border-radius: 100px; backdrop-filter: blur(5px);
+            border: 1px solid color-mix(in srgb, var(--text-base) 10%, transparent);
+        }
+
+        #viewer-loader {
+            position: absolute; width: 60px; height: 60px;
+            border: 2px solid color-mix(in srgb, var(--text-base) 10%, transparent);
+            border-top-color: var(--accent);
+            border-radius: 50%; animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .close-viewer-btn {
+            position: absolute; top: 2rem; right: 2rem; z-index: 50; cursor: pointer; pointer-events: auto;
+        }
+
+        .universe-station {
+            position: fixed; right: 1.25rem; top: 50%; transform: translateY(-50%);
+            z-index: 100000;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0.8rem; padding: 2rem 0.6rem; border-radius: 100px; background: #000;
+            border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s;
+            pointer-events: auto;
+        }
+        @media (max-width: 768px) { .universe-station { display: none; } }
+
+        .u-node { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3); transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); overflow: hidden; display: flex; cursor: pointer; position: relative; }
+        .u-node:hover { transform: scale(1.15); }
+        .u-node.active { border-color: #FFF; transform: scale(1.3); box-shadow: 0 0 20px var(--accent); }
+
+        .side-text {
+            writing-mode: vertical-lr; transform: rotate(180deg); font-size: 11px; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 0.6em; color: #FFFFFF; opacity: 1;
+            transition: 0.3s; padding-top: 1.5rem; margin-top: 1rem; border-top: 2px solid var(--accent); cursor: pointer;
+        }
+        .side-text:hover { color: var(--accent); }
+
+        .swatch-box { position: relative; width: 14px; height: 14px; cursor: pointer; pointer-events: auto; margin: 0 4px; }
+        .swatch-box input { position: absolute; top: -6px; left: -6px; width: 26px; height: 26px; opacity: 0; cursor: pointer; z-index: 10; }
+
+        .swatch-box::before {
+            content: ''; position: absolute; inset: 0; background: var(--sw-color);
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), border-radius 0.6s ease, clip-path 0.6s ease;
+            border: 1px solid color-mix(in srgb, var(--text-base) 20%, transparent); box-sizing: border-box;
+        }
+
+        body:not([class*="theme-"]) .swatch-box::before, body.theme-monochrome .swatch-box::before { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); }
+        body.theme-vibrant .swatch-box::before { border-radius: 0; transform: rotate(45deg); }
+        body.theme-light .swatch-box::before { border-radius: 50% 50% 0 50%; transform: rotate(45deg); }
+        body.theme-elenco .swatch-box::before { border-radius: 0; transform: rotate(0deg); border: none; clip-path: polygon(0 0, 100% 0, 100% 65%, 50% 100%, 0 65%); }
+        body.theme-elenco .swatch-box { filter: drop-shadow(0px 1px 0px color-mix(in srgb, var(--text-base) 40%, transparent)); }
+
+        body:not([class*="theme-"]) .swatch-box:hover::before, body.theme-monochrome .swatch-box:hover::before { transform: scale(1.2) translateY(-2px) rotate(-45deg); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body.theme-vibrant .swatch-box:hover::before { transform: scale(1.2) translateY(-2px) rotate(45deg); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body.theme-light .swatch-box:hover::before { transform: scale(1.2) translateY(-2px) rotate(45deg); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body.theme-elenco .swatch-box:hover::before { transform: scale(1.2) translateY(-2px) rotate(0deg); }
+
+        .a11y-btn { font-size: 8px; font-weight: 900; padding: 3px 8px; border: 1px solid currentColor; border-radius: 2px; opacity: 0.4; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; pointer-events: auto; }
+        .a11y-btn:hover { opacity: 1; color: var(--accent); }
+
+        .hero-title {
+            line-height: var(--lh-hero); letter-spacing: var(--tracking-title); font-weight: var(--weight-title);
+            font-family: var(--font-display); text-transform: uppercase; font-size: clamp(3.5rem, 11vw, 12rem);
+            margin-left: -0.05em; padding-bottom: 0.1em; transition: 1s cubic-bezier(0.16, 1, 0.3, 1); position: relative; z-index: 10;
+        }
+        .hero-entry { transform: translateY(30px); opacity: 0; filter: blur(8px); }
+        .prose-intro { max-width: 45rem; }
+        .prose-body { max-width: 40rem; }
+
+        .reveal-up { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.19, 1, 0.22, 1); }
+        .reveal-up.in-view { opacity: 1; transform: translateY(0); }
+
+        .reality-layer { position: fixed; inset: 0; z-index: 5000; transform: translateY(-100%); pointer-events: none; visibility: hidden; }
+        .shutter-active { transform: translateY(100%) !important; visibility: visible !important; }
+        #shutter-1 { background: var(--accent); transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 88%); }
+        #shutter-2 { background: var(--text-base); transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1) 0.05s; opacity: 0.5; clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+        #shutter-3 { background: var(--surface); transition: transform 0.9s cubic-bezier(0.7, 0, 0.3, 1) 0.1s; }
+
+        #vault-backdrop { position: fixed; inset: 0; z-index: 15; display: none; }
+        body.vault-open #vault-backdrop { display: block; cursor: pointer; }
+
+        .vault-anim-item {
+            opacity: 0; transform: translateY(30px); filter: blur(5px);
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1), filter 1s cubic-bezier(0.19, 1, 0.22, 1), color 0.8s ease;
+            will-change: transform, opacity, filter;
+        }
+        body.vault-open .vault-anim-item { opacity: 1; transform: translateY(0); filter: blur(0); }
+        body.vault-open .v-delay-1 { transition-delay: 0.05s; }
+        body.vault-open .v-delay-2 { transition-delay: 0.1s; }
+        body.vault-open .v-delay-3 { transition-delay: 0.15s; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="custom-cursor" class="cursor-monochrome" aria-hidden="true"></div>
+
+    <div id="shutter-1" class="reality-layer"></div>
+    <div id="shutter-2" class="reality-layer"></div>
+    <div id="shutter-3" class="reality-layer"></div>
+    <canvas id="liquid-canvas" class="fixed inset-0 z-[1001] pointer-events-none opacity-0"></canvas>
+
+    <div id="vault-backdrop"></div>
+
+    <aside id="edge-vault">
+        <div class="vault-closed-ui">
+            <div class="vault-label-vertical" data-t="vault-label">GALERIA</div>
+            <div class="flex flex-col items-center gap-2">
+                <div class="magic-eye-mini"></div>
+                <div class="magic-eye-mini"></div>
+                <div class="magic-eye-mini"></div>
+            </div>
+            <div class="opacity-30"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+        </div>
+
+        <div class="vault-open-ui">
+            <div class="max-w-3xl mx-auto flex flex-col h-full w-full">
+                <div class="flex justify-between items-start mb-10 overflow-hidden py-2 vault-anim-item v-delay-1">
+                    <h2 class="font-display font-black text-4xl md:text-5xl uppercase text-textBase transition-colors duration-[800ms]" data-t="vault-title">GALERIA</h2>
+                    <button class="a11y-btn text-textBase opacity-60 hover:opacity-100 hover:text-accent border-textBase/30 py-4 px-2 tracking-[0.2em] transition-colors duration-[800ms]" style="writing-mode: vertical-rl; transform: rotate(180deg);" onclick="closeVault(event)" data-t="btn-close">FECHAR</button>
+                </div>
+                <div class="h-1 bg-accent mb-8 transition-colors duration-[800ms] vault-anim-item v-delay-2" style="width: 3rem;"></div>
+                <div class="prose-body space-y-6 transition-colors duration-[800ms] vault-anim-item v-delay-3">
+                    <p class="a11y-reading font-light" data-t="vault-desc1">A Galeria apresenta obras disponíveis para incorporação a coleções e ambientes, reunindo parte significativa da produção do escultor ítalo-brasileiro Domenico Calabrone. As peças são exibidas no espaço da Bottega D'Arte, permitindo observar sua presença, escala e relação com o entorno.</p>
+                </div>
+
+                <div class="vault-grid vault-anim-item v-delay-3" id="gallery-grid"></div>
+
+                <p class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40 mt-16 pb-12 text-center border-t border-textBase/10 pt-10 transition-colors duration-[800ms] vault-anim-item v-delay-3" data-t="vault-footer">A diversidade de formas e materiais revela diferentes momentos de uma trajetória artística. Informações sobre disponibilidade podem ser obtidas junto ao estúdio.</p>
+            </div>
+        </div>
+    </aside>
+
+    <div id="piece-viewer">
+        <div class="prism-bg">
+            <div class="prism-orb orb-1"></div>
+            <div class="prism-orb orb-2"></div>
+        </div>
+
+        <div class="viewer-glass-card">
+            <button class="a11y-btn close-viewer-btn px-4 py-2 border-current opacity-40 hover:opacity-100 hover:text-accent hover:border-accent transition-colors duration-[800ms]" onclick="closeViewer(event)">FECHAR [X]</button>
+            <div class="viewer-side-panel">
+                <div>
+                    <p class="text-[10px] font-black uppercase tracking-[0.5em] opacity-50 mb-2 text-accent transition-colors duration-[800ms]" id="viewer-material">Material Placeholder</p>
+                    <h3 class="font-display font-black text-5xl lg:text-6xl uppercase tracking-tighter mb-8 transition-colors duration-[800ms]" id="viewer-title">Obra 01</h3>
+                    <div class="w-8 h-1 bg-textBase opacity-20 mb-8 transition-colors duration-[800ms]"></div>
+                    <p class="a11y-reading font-light opacity-70 leading-relaxed text-sm lg:text-base transition-colors duration-[800ms]">
+                        Estudo de volumetria e refração ótica. A peça reage dinamicamente às turbulências de luz do ambiente, revelando camadas de densidade variável à medida que o espectador interage com o seu centro de gravidade.
+                    </p>
+                </div>
+                <div class="mt-10 lg:mt-0 transition-colors duration-[800ms]">
+                    <p class="text-[9px] font-black uppercase tracking-[0.4em] opacity-40 mb-3 transition-colors duration-[800ms]">Interação Física</p>
+                    <p class="text-xs font-light opacity-60 leading-relaxed transition-colors duration-[800ms]">
+                        Aplique fricção tátil sobre a obra para manipular o monólito no espaço tridimensional. A inércia reflete o peso do material.
+                    </p>
+                </div>
+            </div>
+
+            <div id="viewer-360-container" title="Arraste para explorar">
+                <div id="viewer-loader"></div>
+                <img id="viewer-img" src="" alt="Visão 360" draggable="false"/>
+                <div class="drag-hint">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                    <span class="text-[9px] font-black uppercase tracking-[0.3em]">Arraste ou faça Scroll</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="w-full flex justify-between items-center h-24 align-wall">
+            <div class="flex flex-col items-start">
+                <a href="#" id="main-logo" onclick="setTheme('monochrome')">Bottega D'Arte</a>
+
+                <div class="flex items-center gap-4 mt-1.5 transition-opacity duration-500">
+                    <div class="flex items-center gap-2 pr-4 border-r border-textBase/10">
+                        <div class="flex gap-2.5">
+                            <div class="swatch-box" id="sw-bg" title="Cor de Fundo" style="--sw-color: var(--bg-base)">
+                                <input type="color" oninput="updateLiveColor('--bg-base', this.value, 'sw-bg')" aria-label="Cor de Fundo">
+                            </div>
+                            <div class="swatch-box" id="sw-tx" title="Cor do Texto" style="--sw-color: var(--text-base)">
+                                <input type="color" oninput="updateLiveColor('--text-base', this.value, 'sw-tx')" aria-label="Cor do Texto">
+                            </div>
+                            <div class="swatch-box" id="sw-ac" title="Cor de Destaque" style="--sw-color: var(--accent)">
+                                <input type="color" oninput="updateLiveColor('--accent', this.value, 'sw-ac')" aria-label="Cor de Destaque">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 border-r border-textBase/10 pr-3">
+                        <button class="text-[10px] font-black opacity-40 hover:opacity-100 hover:text-accent px-1 transition-colors" onclick="changeFontSize(-0.1)" title="Reduzir Fonte">A-</button>
+                        <button class="text-[10px] font-black opacity-40 hover:opacity-100 hover:text-accent px-1 transition-colors" onclick="changeFontSize(0.1)" title="Aumentar Fonte">A+</button>
+                    </div>
+
+                    <div class="flex items-center gap-1 border-r border-textBase/10 pr-3">
+                        <button class="text-[9px] font-black hover:text-accent px-1 transition-colors lang-btn text-accent opacity-100" id="btn-pt" onclick="setLanguage('pt')">PT</button>
+                        <span class="text-[9px] opacity-20">/</span>
+                        <button class="text-[9px] font-black opacity-40 hover:opacity-100 hover:text-accent px-1 transition-colors lang-btn" id="btn-en" onclick="setLanguage('en')">EN</button>
+                    </div>
+
+                    <div class="flex gap-1 border-r border-textBase/10 pr-3">
+                        <button id="audio-toggle" class="text-[9px] font-black opacity-40 hover:opacity-100 hover:text-accent px-1 transition-colors" onclick="AudioFX.toggleMute()">SOM: OFF</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden md:flex gap-10 text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] opacity-100 text-textBase items-center header-nav-right">
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                        class="hover:text-accent transition-colors"
+                        data-t="nav-home">
+                    Início
+                </button>
+                <button onclick="setTheme('vibrant')" class="hover:text-accent transition-colors" data-t="nav-acting">Atuação</button>
+                <button onclick="setTheme('light')" class="hover:text-accent transition-colors" data-t="nav-projects">Projetos</button>
+                <button onclick="setTheme('elenco')" class="hover:text-accent transition-colors" data-t="nav-services">Serviços</button>
+            </div>
+        </nav>
+    </header>
+
+    <aside class="universe-station">
+        <div onclick="setTheme('monochrome', this)" class="u-node active" title="A Bottega"><div class="w-1/2 h-full bg-[#F2ECE4]"></div><div class="w-1/2 h-full bg-[#B8860B]"></div></div>
+        <div onclick="setTheme('vibrant', this)" class="u-node" title="Atuação"><div class="w-1/2 h-full bg-[#0500FF]"></div><div class="w-1/2 h-full bg-[#FF00FF]"></div></div>
+        <div onclick="setTheme('light', this)" class="u-node" title="Projetos"><div class="w-1/2 h-full bg-[#F7F3EB]"></div><div class="w-1/2 h-full bg-[#A84820]"></div></div>
+        <div onclick="setTheme('elenco', this)" class="u-node" title="Serviços"><div class="w-1/2 h-full bg-[#0D0D0D]"></div><div class="w-1/2 h-full bg-[#C3FF00]"></div></div>
+        <a href="#footer" class="side-text" data-t="side-contact">Contato</a>
+    </aside>
+
+    <div id="site-wrapper">
+        <main id="dynamic-content" class="min-h-screen pt-44 pb-40">
+            <section class="w-full align-wall pb-8 reveal-up animate-on-scroll">
+                <div class="relative inline-block w-full max-w-max">
+                    <h1 class="hero-title text-textBase mb-12" id="h-title">A BOT<br>TEGA</h1>
+                    <div id="blueprint-dot" style="display: none;"></div>
+                </div>
+            </section>
+
+            <section class="align-text pt-4 reveal-up animate-on-scroll">
+                <div class="flex flex-col md:flex-row gap-8 lg:gap-16 items-start">
+                    <div class="flex-shrink-0 pt-2 hidden md:block">
+                        <span class="text-[10px] font-black uppercase tracking-[0.5em] opacity-40 border-l border-accent pl-4" id="u-label-side">01. A BOTTEGA</span>
+                    </div>
+                    <div class="prose-intro space-y-8 opacity-90 border-l border-textBase/10 pl-6">
+                        <span class="text-[10px] font-black uppercase tracking-[0.5em] opacity-40 block md:hidden mb-6 border-l border-accent pl-4" id="u-label-top">01. A BOTTEGA</span>
+                        <p class="a11y-hero-desc font-light leading-snug tracking-tight" id="h-desc"></p>
+                        <p class="a11y-reading font-light opacity-70 leading-relaxed" id="h-extra"></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mt-40 md:mt-56 align-text reveal-up animate-on-scroll">
+                <header class="mb-20 prose-intro pl-6 md:pl-24 lg:pl-32">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-8 h-px bg-textBase opacity-20"></div>
+                        <span class="text-[9px] font-black uppercase tracking-[0.4em] opacity-40" data-t="context-label">Contexto</span>
+                    </div>
+                    <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tighter mb-8" id="s-title"></h2>
+                    <p class="a11y-subtitle font-light opacity-70 leading-relaxed" id="s-subtitle"></p>
+                </header>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 border-t border-textBase/10 pt-16 pl-6 md:pl-24 lg:pl-32" id="grid-content"></div>
+            </section>
+        </main>
+
+        <footer id="footer" class="py-32 align-wall border-t border-textBase/10 bg-surface/5 reveal-up animate-on-scroll">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div>
+                    <div class="font-display font-black text-5xl uppercase tracking-tighter mb-8 opacity-20">Bottega D'Arte</div>
+                    <p class="max-w-xl a11y-subtitle font-light opacity-60 leading-relaxed" data-t="footer-desc">A Bottega D'Arte está disponível para conversas sobre projetos, obras e parcerias. Entre em contato para apresentar uma ideia, solicitar informações ou agendar uma visita ao espaço.</p>
+                </div>
+                <div class="flex flex-col lg:items-end justify-end space-y-4 text-[10px] font-black uppercase tracking-[0.4em] opacity-40">
+                    <p data-t="footer-note">O estúdio retornará com atenção às especificidades de cada proposta.</p>
+                    <p>© 2026 • São Paulo, BR</p>
+                    <p class="text-accent opacity-100 font-bold hover:underline cursor-pointer">contato@bottegadarte.com.br</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const AudioFX = {
+            ctx: null, isMuted: true, hasInteracted: false, ambienceNodes: [], ambienceInterval: null, ambienceBus: null, delayNode: null, feedbackGain: null, delayFilter: null,
+            init: function() {
+                try {
+                    if (!this.ctx) {
+                        this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                        this.ambienceBus = this.ctx.createGain(); this.ambienceBus.gain.value = 1.0;
+                        this.delayNode = this.ctx.createDelay(); this.delayNode.delayTime.value = 0.8;
+                        this.feedbackGain = this.ctx.createGain(); this.feedbackGain.gain.value = 0.5;
+                        this.delayFilter = this.ctx.createBiquadFilter(); this.delayFilter.type = 'lowpass'; this.delayFilter.frequency.value = 800;
+                        this.ambienceBus.connect(this.ctx.destination); this.ambienceBus.connect(this.delayNode);
+                        this.delayNode.connect(this.delayFilter); this.delayFilter.connect(this.feedbackGain);
+                        this.feedbackGain.connect(this.delayNode); this.feedbackGain.connect(this.ctx.destination);
+                    }
+                    if (this.ctx.state === 'suspended') this.ctx.resume();
+                } catch(e) {}
+            },
+            toggleMute: function() {
+                this.init(); this.isMuted = !this.isMuted; const btn = document.getElementById('audio-toggle');
+                if (this.isMuted) { btn.innerText = 'SOM: OFF'; btn.classList.remove('text-accent', 'opacity-100'); btn.classList.add('opacity-40'); this.stopAmbience(); }
+                else { btn.innerText = 'SOM: ON'; btn.classList.remove('opacity-40'); btn.classList.add('text-accent', 'opacity-100'); this.playHover(currentThemeKey); this.startAmbience(currentThemeKey); }
+            },
+            changeAcoustics: function(theme, t) {
+                if (!this.delayNode) return;
+                let dTime = 0.8, fGain = 0.5, fFreq = 800;
+                if (theme === 'monochrome') { dTime = 0.85; fGain = 0.65; fFreq = 500; }
+                else if (theme === 'vibrant') { dTime = 0.25; fGain = 0.3; fFreq = 3000; }
+                else if (theme === 'light') { dTime = 0.5; fGain = 0.45; fFreq = 1000; }
+                else { dTime = 0.12; fGain = 0.7; fFreq = 4500; }
+                this.delayNode.delayTime.linearRampToValueAtTime(dTime, t + 2);
+                this.feedbackGain.gain.linearRampToValueAtTime(fGain, t + 2);
+                this.delayFilter.frequency.linearRampToValueAtTime(fFreq, t + 2);
+            },
+            startAmbience: function(theme = 'monochrome') {
+                try {
+                    if (this.isMuted || !this.ctx) return;
+                    const t = this.ctx.currentTime; this.changeAcoustics(theme, t); clearTimeout(this.ambienceInterval);
+                    if (this.ambienceNodes.length > 0) {
+                        this.ambienceNodes.forEach(node => {
+                            try {
+                                node.volGain.gain.cancelScheduledValues(t); node.volGain.gain.linearRampToValueAtTime(0.0001, t + 2);
+                                setTimeout(() => { try { if(node.osc) { node.osc.stop(); node.osc.disconnect(); } if(node.volGain) { node.volGain.disconnect(); } } catch(e){} }, 2500);
+                            } catch(e) {}
+                        });
+                    }
+                    this.ambienceNodes = [];
+
+                    let baseFrequencies = [];
+                    let distantFrequencies = [];
+                    let baseVol = 0.003;
+
+                    if (theme === 'monochrome') {
+                        baseFrequencies = [65.41, 98.00, 130.81];
+                        distantFrequencies = [196.00, 261.63, 311.13, 392.00, 523.25];
+                        baseVol = 0.004;
+                    } else if (theme === 'vibrant') {
+                        baseFrequencies = [73.42, 110.00, 146.83];
+                        distantFrequencies = [293.66, 369.99, 440.00, 554.37, 739.99];
+                        baseVol = 0.002;
+                    } else if (theme === 'light') {
+                        baseFrequencies = [87.31, 130.81, 174.61];
+                        distantFrequencies = [233.08, 261.63, 349.23, 466.16];
+                        baseVol = 0.005;
+                    } else {
+                        baseFrequencies = [55.00, 82.41, 110.00];
+                        distantFrequencies = [220.00, 246.94, 329.63, 440.00, 523.25];
+                        baseVol = 0.003;
+                    }
+
+                    baseFrequencies.forEach((freq, i) => {
+                        const harmonicMultipliers = [1, 2, 3, 4];
+                        harmonicMultipliers.forEach((hMult, hIdx) => {
+                            const osc = this.ctx.createOscillator();
+
+                            if (theme === 'light') osc.type = 'triangle';
+                            else if (theme === 'vibrant') osc.type = 'square';
+                            else osc.type = 'sine';
+
+                            osc.frequency.value = freq * hMult;
+
+                            const volGain = this.ctx.createGain();
+                            volGain.gain.setValueAtTime(0.0001, t);
+
+                            const hTargetVol = Math.max(0.0001, (baseVol / (hIdx + 1)) * 0.8);
+
+                            if (hIdx === 0) {
+                                volGain.gain.linearRampToValueAtTime(hTargetVol, t + 4 + i);
+                                const volLfo = this.ctx.createOscillator();
+                                volLfo.type = 'sine';
+                                volLfo.frequency.value = Math.random() * 0.01 + 0.005;
+                                const volLfoGain = this.ctx.createGain();
+                                volLfoGain.gain.value = hTargetVol * 0.6;
+                                volLfo.connect(volLfoGain);
+                                volLfoGain.connect(volGain.gain);
+                                volLfo.start(t);
+                                this.ambienceNodes.push({ osc, volLfo, volGain });
+                            } else {
+                                const attack = 4 + (hIdx * 2);
+                                const release = 15 + (hIdx * 8);
+                                volGain.gain.linearRampToValueAtTime(hTargetVol, t + attack);
+                                volGain.gain.linearRampToValueAtTime(0.0001, t + attack + release);
+                                osc.stop(t + attack + release + 1);
+                                this.ambienceNodes.push({ osc, volGain });
+                            }
+
+                            const panner = this.ctx.createStereoPanner ? this.ctx.createStereoPanner() : this.ctx.createGain();
+                            if (panner.pan) panner.pan.value = (Math.random() * 1.5 - 0.75) * (hIdx / 4);
+
+                            const filter = this.ctx.createBiquadFilter();
+                            filter.type = 'lowpass';
+                            filter.frequency.value = (theme === 'light') ? 600 : (theme === 'vibrant' ? 250 : 400);
+
+                            osc.connect(filter);
+                            filter.connect(volGain);
+                            volGain.connect(panner);
+                            panner.connect(this.ambienceBus);
+
+                            osc.start(t);
+                        });
+                    });
+
+                    const generateEvent = () => {
+                        try {
+                            if (this.isMuted || !this.ctx || this.ambienceNodes.length === 0) return;
+                            const currentT = this.ctx.currentTime;
+                            const eventType = Math.random();
+
+                            if (eventType < 0.45) {
+                                const numNotes = Math.floor(Math.random() * 3) + 1;
+                                for(let i=0; i<numNotes; i++) {
+                                    const noteFreq = distantFrequencies[Math.floor(Math.random() * distantFrequencies.length)];
+                                    const osc = this.ctx.createOscillator();
+                                    osc.type = (theme === 'light') ? 'triangle' : 'sine';
+                                    osc.frequency.value = noteFreq + (Math.random() * 2 - 1);
+
+                                    const gain = this.ctx.createGain();
+                                    gain.gain.setValueAtTime(0.0001, currentT);
+
+                                    const attack = Math.random() * 5 + 3;
+                                    const release = Math.random() * 10 + 5;
+                                    const peak = Math.max(0.0001, baseVol * (Math.random() * 1.5 + 0.5));
+
+                                    gain.gain.linearRampToValueAtTime(peak, currentT + attack);
+                                    gain.gain.linearRampToValueAtTime(0.0001, currentT + attack + release);
+
+                                    const panner = this.ctx.createStereoPanner ? this.ctx.createStereoPanner() : this.ctx.createGain();
+                                    if (panner.pan) panner.pan.value = Math.random() * 2 - 1;
+
+                                    const filter = this.ctx.createBiquadFilter();
+                                    filter.type = 'lowpass'; filter.frequency.value = 600;
+
+                                    osc.connect(filter); filter.connect(gain); gain.connect(panner); panner.connect(this.ambienceBus);
+                                    osc.start(currentT); osc.stop(currentT + attack + release);
+                                }
+                            } else if (eventType < 0.7) {
+                                const dur = Math.random() * 6 + 4;
+                                const bufferSize = this.ctx.sampleRate * dur;
+                                const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                                const data = buffer.getChannelData(0);
+                                for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.1;
+
+                                const noise = this.ctx.createBufferSource(); noise.buffer = buffer;
+
+                                const filter = this.ctx.createBiquadFilter();
+                                filter.type = 'bandpass'; filter.Q.value = Math.random() * 4 + 1;
+                                filter.frequency.setValueAtTime(Math.random() * 1500 + 200, currentT);
+                                filter.frequency.linearRampToValueAtTime(Math.random() * 800 + 100, currentT + dur);
+
+                                const noiseGain = this.ctx.createGain();
+                                noiseGain.gain.setValueAtTime(0.0001, currentT);
+                                noiseGain.gain.linearRampToValueAtTime(baseVol * 1.5, currentT + dur * 0.4);
+                                noiseGain.gain.linearRampToValueAtTime(0.0001, currentT + dur);
+
+                                const panner = this.ctx.createStereoPanner ? this.ctx.createStereoPanner() : this.ctx.createGain();
+                                if (panner.pan) panner.pan.value = Math.random() * 1.8 - 0.9;
+
+                                noise.connect(filter); filter.connect(noiseGain); noiseGain.connect(panner); panner.connect(this.ambienceBus);
+                                noise.start(currentT);
+                            } else {
+                                if (theme === 'vibrant') {
+                                    const noteFreq = distantFrequencies[Math.floor(Math.random() * distantFrequencies.length)];
+
+                                    [0, 0.08].forEach(offset => {
+                                        const osc = this.ctx.createOscillator();
+                                        osc.type = 'sawtooth';
+                                        osc.frequency.value = noteFreq;
+
+                                        const gain = this.ctx.createGain();
+                                        gain.gain.setValueAtTime(0.0001, currentT + offset);
+                                        gain.gain.linearRampToValueAtTime(baseVol * 4, currentT + offset + 0.01);
+                                        gain.gain.linearRampToValueAtTime(0.0001, currentT + offset + 0.15);
+
+                                        const panner = this.ctx.createStereoPanner ? this.ctx.createStereoPanner() : this.ctx.createGain();
+                                        if (panner.pan) panner.pan.value = Math.random() > 0.5 ? 0.7 : -0.7;
+
+                                        const filter = this.ctx.createBiquadFilter();
+                                        filter.type = 'lowpass';
+                                        filter.frequency.setValueAtTime(4000, currentT + offset);
+                                        filter.frequency.exponentialRampToValueAtTime(500, currentT + offset + 0.1);
+
+                                        osc.connect(filter); filter.connect(gain); gain.connect(panner); panner.connect(this.ambienceBus);
+                                        osc.start(currentT + offset); osc.stop(currentT + offset + 0.2);
+                                    });
+                                } else if (theme === 'light') {
+                                    const noteFreq = distantFrequencies[Math.floor(Math.random() * distantFrequencies.length)];
+                                    const osc = this.ctx.createOscillator(); osc.type = 'triangle';
+                                    osc.frequency.setValueAtTime(noteFreq, currentT);
+                                    osc.frequency.exponentialRampToValueAtTime(noteFreq * 0.8, currentT + 0.15);
+
+                                    const gain = this.ctx.createGain();
+                                    gain.gain.setValueAtTime(0.0001, currentT);
+                                    gain.gain.linearRampToValueAtTime(baseVol * 6, currentT + 0.01);
+                                    gain.gain.linearRampToValueAtTime(0.0001, currentT + 0.3);
+
+                                    const panner = this.ctx.createStereoPanner ? this.ctx.createStereoPanner() : this.ctx.createGain();
+                                    if (panner.pan) panner.pan.value = Math.random() * 1.6 - 0.8;
+
+                                    const filter = this.ctx.createBiquadFilter();
+                                    filter.type = 'bandpass'; filter.frequency.value = noteFreq; filter.Q.value = 1.5;
+
+                                    osc.connect(filter); filter.connect(gain); gain.connect(panner); panner.connect(this.ambienceBus);
+                                    osc.start(currentT); osc.stop(currentT + 0.4);
+                                }
+                            }
+                            this.ambienceInterval = setTimeout(generateEvent, (Math.random() * 10000) + 4000);
+                        } catch (err) { console.warn("AudioFX Generate Erro:", err); }
+                    };
+
+                    this.ambienceInterval = setTimeout(generateEvent, 4000);
+                } catch (e) { console.warn("AudioFX Ambiente Erro:", e); }
+            },
+            stopAmbience: function() {
+                try {
+                    clearTimeout(this.ambienceInterval); if (this.ambienceNodes.length === 0) return; const t = this.ctx.currentTime;
+                    this.ambienceNodes.forEach(node => {
+                        try { node.volGain.gain.cancelScheduledValues(t); node.volGain.gain.linearRampToValueAtTime(0.0001, t + 2); setTimeout(() => { try { if(node.osc) { node.osc.stop(); node.osc.disconnect(); } if(node.volGain) { node.volGain.disconnect(); } } catch(e){} }, 2500); } catch(e) {}
+                    });
+                    this.ambienceNodes = [];
+                } catch(e){}
+            },
+            playHover: function(theme = 'monochrome') {
+                try {
+                    if (this.isMuted || !this.ctx) return;
+                    const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain(); const t = this.ctx.currentTime;
+                    osc.connect(gain); gain.connect(this.ctx.destination);
+                    if (theme === 'light') {
+                        osc.type = 'triangle'; osc.frequency.setValueAtTime(250, t); osc.frequency.linearRampToValueAtTime(80, t + 0.05);
+                        gain.gain.setValueAtTime(0.08, t); gain.gain.linearRampToValueAtTime(0.0001, t + 0.1);
+                    } else if (theme === 'vibrant') {
+                        osc.type = 'sawtooth'; osc.frequency.setValueAtTime(587.33, t);
+                        gain.gain.setValueAtTime(0.06, t); gain.gain.linearRampToValueAtTime(0.0001, t + 0.15);
+                        const filter = this.ctx.createBiquadFilter();
+                        filter.type = 'lowpass'; filter.frequency.setValueAtTime(4000, t); filter.frequency.exponentialRampToValueAtTime(400, t + 0.1);
+                        osc.disconnect(); osc.connect(filter); filter.connect(gain);
+                    } else {
+                        osc.type = 'sine'; osc.frequency.setValueAtTime(320, t); osc.frequency.linearRampToValueAtTime(150, t + 0.15);
+                        gain.gain.setValueAtTime(0.05, t); gain.gain.linearRampToValueAtTime(0.0001, t + 0.2);
+                    }
+                    osc.start(t); osc.stop(t + 0.3);
+                } catch(e){}
+            },
+            playWhoosh: function(duration = 1.0, isDeep = false) {
+                try {
+                    if (this.isMuted || !this.ctx) return;
+                    const t = this.ctx.currentTime; const bufferSize = this.ctx.sampleRate * duration; const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                    const data = buffer.getChannelData(0); for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.5;
+                    const noise = this.ctx.createBufferSource(); noise.buffer = buffer;
+                    const filter = this.ctx.createBiquadFilter(); filter.type = 'bandpass'; filter.Q.value = 1.0;
+                    filter.frequency.setValueAtTime(isDeep ? 300 : 2000, t); filter.frequency.linearRampToValueAtTime(isDeep ? 1000 : 400, t + duration * 0.5); filter.frequency.linearRampToValueAtTime(isDeep ? 80 : 80, t + duration);
+                    const noiseGain = this.ctx.createGain(); noiseGain.gain.setValueAtTime(0.0001, t); noiseGain.gain.linearRampToValueAtTime(0.2, t + duration * 0.2); noiseGain.gain.linearRampToValueAtTime(0.0001, t + duration);
+                    noise.connect(filter); filter.connect(noiseGain); noiseGain.connect(this.ambienceBus || this.ctx.destination); noise.start(t);
+
+                    if (isDeep) {
+                        const osc = this.ctx.createOscillator(); const oscGain = this.ctx.createGain();
+                        osc.type = 'sine'; osc.frequency.setValueAtTime(80, t); osc.frequency.linearRampToValueAtTime(20, t + duration);
+                        oscGain.gain.setValueAtTime(0.0001, t); oscGain.gain.linearRampToValueAtTime(0.2, t + 0.1); oscGain.gain.linearRampToValueAtTime(0.0001, t + duration);
+                        osc.connect(oscGain); oscGain.connect(this.ambienceBus || this.ctx.destination);
+                        osc.start(t); osc.stop(t + duration);
+                    }
+                } catch(e){}
+            },
+            playScrambleTick: function() {
+                try {
+                    if (this.isMuted || !this.ctx) return;
+                    const t = this.ctx.currentTime; const dur = 0.015 + Math.random() * 0.015; const bufferSize = this.ctx.sampleRate * dur;
+                    const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate); const data = buffer.getChannelData(0);
+                    for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.4;
+                    const noise = this.ctx.createBufferSource(); noise.buffer = buffer;
+                    const filter = this.ctx.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.value = 2500 + Math.random() * 1500; filter.Q.value = 0.5;
+                    const gain = this.ctx.createGain(); gain.gain.setValueAtTime(0.0001, t); gain.gain.linearRampToValueAtTime(0.008 + Math.random() * 0.004, t + 0.005); gain.gain.linearRampToValueAtTime(0.0001, t + dur);
+                    noise.connect(filter); filter.connect(gain); gain.connect(this.ctx.destination); noise.start(t);
+                } catch(e){}
+            },
+            playThemeChange: function(theme = 'monochrome') {
+                try {
+                    if (this.isMuted || !this.ctx) return;
+                    const t = this.ctx.currentTime;
+                    this.playWhoosh(1.2, theme === 'monochrome' || theme === 'elenco');
+                    const dest = this.ambienceBus || this.ctx.destination;
+
+                    if (theme === 'monochrome') {
+                        [130.81, 261.63, 392.44].forEach((freq, idx) => {
+                            const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+                            osc.type = 'sine'; osc.frequency.setValueAtTime(freq, t);
+                            gain.gain.setValueAtTime(0.0001, t); gain.gain.linearRampToValueAtTime(0.1 / (idx+1), t + 0.05); gain.gain.linearRampToValueAtTime(0.0001, t + 2.5);
+                            osc.connect(gain); gain.connect(dest); osc.start(t); osc.stop(t + 2.5);
+                        });
+                    } else if (theme === 'vibrant') {
+                        const notes = [293.66, 329.63, 369.99, 392.00, 440.00, 493.88, 587.33];
+                        notes.forEach((freq, idx) => {
+                            const delay = t + (idx * 0.05);
+                            const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+                            osc.type = 'sawtooth'; osc.frequency.setValueAtTime(freq, delay);
+                            gain.gain.setValueAtTime(0.0001, delay); gain.gain.linearRampToValueAtTime(0.06, delay + 0.01); gain.gain.linearRampToValueAtTime(0.0001, delay + 0.15);
+
+                            const filter = this.ctx.createBiquadFilter();
+                            filter.type = 'lowpass'; filter.frequency.setValueAtTime(5000, delay); filter.frequency.exponentialRampToValueAtTime(600, delay + 0.1);
+
+                            osc.connect(filter); filter.connect(gain); gain.connect(dest);
+                            osc.start(delay); osc.stop(delay + 0.2);
+                        });
+                    } else if (theme === 'light') {
+                        const notes = [174.61, 261.63, 349.23];
+                        notes.forEach((freq, idx) => {
+                            const delay = t + (idx * 0.15);
+                            const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+                            osc.type = 'triangle';
+                            osc.frequency.setValueAtTime(freq * 0.85, delay);
+                            osc.frequency.linearRampToValueAtTime(freq, delay + 0.15);
+
+                            gain.gain.setValueAtTime(0.0001, delay);
+                            gain.gain.linearRampToValueAtTime(0.06, delay + 0.15);
+                            gain.gain.linearRampToValueAtTime(0.0001, delay + 2.0);
+
+                            const panner = this.ctx.createStereoPanner ? this.ctx.createStereoPanner() : this.ctx.createGain();
+                            if(panner.pan) panner.pan.value = Math.random() * 0.8 - 0.4;
+
+                            const filter = this.ctx.createBiquadFilter(); filter.type = 'lowpass'; filter.frequency.value = 600;
+
+                            osc.connect(filter); filter.connect(gain); gain.connect(panner); panner.connect(dest);
+                            osc.start(delay); osc.stop(delay + 2.0);
+                        });
+
+                        const dur = 1.8; const bufferSize = this.ctx.sampleRate * dur; const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                        const data = buffer.getChannelData(0); for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.15;
+                        const noise = this.ctx.createBufferSource(); noise.buffer = buffer;
+
+                        const nFilter = this.ctx.createBiquadFilter(); nFilter.type = 'bandpass'; nFilter.Q.value = 2.5;
+                        nFilter.frequency.setValueAtTime(250, t); nFilter.frequency.linearRampToValueAtTime(500, t + dur);
+
+                        const nGain = this.ctx.createGain(); nGain.gain.setValueAtTime(0.0001, t); nGain.gain.linearRampToValueAtTime(0.3, t + 0.2); nGain.gain.linearRampToValueAtTime(0.0001, t + dur);
+                        noise.connect(nFilter); nFilter.connect(nGain); nGain.connect(dest); noise.start(t);
+                    } else {
+                        for(let i=0; i<5; i++) {
+                            const delay = t + (i * 0.12);
+                            const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+                            osc.type = 'sine'; osc.frequency.setValueAtTime(440 + (i*110), delay);
+                            gain.gain.setValueAtTime(0.0001, delay); gain.gain.linearRampToValueAtTime(0.01, delay + 0.01); gain.gain.linearRampToValueAtTime(0.0001, delay + 0.1);
+
+                            const filter = this.ctx.createBiquadFilter(); filter.type = 'highpass'; filter.frequency.value = 1000;
+                            const panner = this.ctx.createStereoPanner ? this.ctx.createStereoPanner() : this.ctx.createGain();
+                            if(panner.pan) panner.pan.value = (i % 2 === 0) ? -0.8 : 0.8;
+
+                            osc.connect(filter); filter.connect(gain); gain.connect(panner); panner.connect(dest);
+                            osc.start(delay); osc.stop(delay + 0.1);
+                        }
+                    }
+                } catch(e){}
+            }
+        };
+
+        document.body.addEventListener('click', () => { if (!AudioFX.hasInteracted) { AudioFX.init(); AudioFX.hasInteracted = true; } }, { once: true });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('button, a, .u-node, .side-text, .swatch-box').forEach(el => {
+                el.addEventListener('mouseenter', () => { AudioFX.playHover(currentThemeKey); });
+            });
+        });
+
+        const galleryPieces = [
+            { id: 1, title: 'Obra 01', material: 'Monólito Safira', seed: 100 },
+            { id: 2, title: 'Obra 02', material: 'Núcleo Rubi', seed: 200 },
+            { id: 3, title: 'Obra 03', material: 'Refração Âmbar', seed: 300 }
+        ];
+
+        let currentFrames = [];
+        let currentFrameIndex = 0;
+        let isDragging360 = false;
+        let startX = 0;
+        let startFrame = 0;
+        let thumbIntervals = {};
+
+        const viewerModal = document.getElementById('piece-viewer');
+        const viewerImg = document.getElementById('viewer-img');
+        const viewerLoader = document.getElementById('viewer-loader');
+        const viewerContainer = document.getElementById('viewer-360-container');
+        const cursor = document.getElementById('custom-cursor');
+
+        function initGallery() {
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = galleryPieces.map(piece => `
+                <div class="flex flex-col items-center gap-6">
+                    <div class="olho-magico-container"
+                         onclick="openViewer(event, ${piece.id})"
+                         onmouseenter="startThumbSpin(${piece.id})"
+                         onmouseleave="stopThumbSpin(${piece.id})">
+                        <div class="olho-magico">
+                            <div class="thumb-frame" id="thumb-frame-${piece.id}"></div>
+                        </div>
+                    </div>
+                    <div class="text-center transition-colors duration-[800ms]">
+                        <h4 class="font-display font-bold text-lg tracking-tight uppercase text-textBase transition-colors duration-[800ms]">${piece.title}</h4>
+                        <span class="text-[9px] font-black uppercase tracking-[0.3em] opacity-40 text-accent transition-colors duration-[800ms]">${piece.material}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            window.allPieceFrames = {};
+
+            galleryPieces.forEach(piece => {
+                const f0 = generateHyperRealEggFrame(piece.seed, 0);
+                window.allPieceFrames[piece.id] = [f0];
+                document.getElementById(`thumb-frame-${piece.id}`).style.backgroundImage = `url('${f0}')`;
+            });
+
+            let renderQueue = [];
+            galleryPieces.forEach(piece => {
+                for(let i=1; i<36; i++) { renderQueue.push({ id: piece.id, seed: piece.seed, angle: i }); }
+            });
+
+            let qIndex = 0;
+            function processNextFrame() {
+                if (qIndex >= renderQueue.length) return;
+                const job = renderQueue[qIndex];
+                window.allPieceFrames[job.id].push(generateHyperRealEggFrame(job.seed, job.angle, 36));
+                qIndex++;
+                setTimeout(processNextFrame, 15);
+            }
+            setTimeout(processNextFrame, 300);
+        }
+
+        function startThumbSpin(id) {
+            AudioFX.playHover('light');
+            const thumb = document.getElementById(`thumb-frame-${id}`);
+            const frames = window.allPieceFrames[id];
+            if(!frames || frames.length < 36) return;
+
+            let frameIdx = 0;
+            thumbIntervals[id] = setInterval(() => {
+                frameIdx = (frameIdx + 1) % frames.length;
+                thumb.style.backgroundImage = `url('${frames[frameIdx]}')`;
+            }, 120);
+        }
+
+        function stopThumbSpin(id) {
+            clearInterval(thumbIntervals[id]);
+        }
+
+        function generateHyperRealEggFrame(seed, angleIndex, totalFrames = 36) {
+            const canvas = document.createElement('canvas');
+            const size = 400;
+            canvas.width = size; canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            ctx.clearRect(0, 0, size, size);
+            ctx.translate(size / 2, size / 2);
+
+            const rot = (angleIndex / totalFrames) * Math.PI * 2;
+
+            let coreH;
+            if (seed === 100) { coreH = 210; }
+            else if (seed === 200) { coreH = 345; }
+            else { coreH = 40; }
+
+            ctx.save();
+            ctx.scale(1, 0.2);
+            const shadowGrad = ctx.createRadialGradient(0, 600, 0, 0, 600, 150);
+            shadowGrad.addColorStop(0, 'rgba(0,0,0,0.3)');
+            shadowGrad.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = shadowGrad;
+            ctx.beginPath();
+            ctx.arc(0, 600, 150, 0, Math.PI*2);
+            ctx.fill();
+            ctx.restore();
+
+            const radius = 130;
+
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, Math.PI * 2);
+
+            const sphereGrad = ctx.createRadialGradient(-40, -40, 10, 0, 0, radius);
+            sphereGrad.addColorStop(0, 'hsl(0, 0%, 65%)');
+            sphereGrad.addColorStop(0.4, 'hsl(0, 0%, 40%)');
+            sphereGrad.addColorStop(1, 'hsl(0, 0%, 15%)');
+            ctx.fillStyle = sphereGrad;
+            ctx.fill();
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, Math.PI * 2);
+            ctx.clip();
+
+            ctx.rotate(Math.PI / 6);
+
+            const numStripes = 6;
+            for(let i=0; i<numStripes; i++) {
+                const angle = rot + (i * Math.PI * 2 / numStripes);
+                const xRadius = Math.sin(angle) * radius;
+                const zPos = Math.cos(angle);
+
+                if (zPos > -0.1) {
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, Math.abs(xRadius), radius, 0, -Math.PI/2, Math.PI/2, xRadius < 0);
+
+                    ctx.lineWidth = 14;
+                    ctx.strokeStyle = `hsla(${coreH}, 80%, 45%, ${0.3 + zPos * 0.7})`;
+                    ctx.stroke();
+
+                    ctx.lineWidth = 4;
+                    ctx.strokeStyle = `hsla(${coreH}, 100%, 75%, ${0.5 + zPos * 0.5})`;
+                    ctx.stroke();
+                }
+            }
+            ctx.restore();
+
+            const glossGrad = ctx.createRadialGradient(-45, -45, 5, -35, -35, 70);
+            glossGrad.addColorStop(0, 'rgba(255, 255, 255, 0.8)');
+            glossGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = glossGrad;
+            ctx.beginPath();
+            ctx.arc(-40, -40, 70, 0, Math.PI*2);
+            ctx.fill();
+
+            const rimGrad = ctx.createLinearGradient(-radius, -radius, radius, radius);
+            rimGrad.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+            rimGrad.addColorStop(0.4, 'rgba(255, 255, 255, 0)');
+            rimGrad.addColorStop(1, 'rgba(0, 0, 0, 0.6)');
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, Math.PI * 2);
+            ctx.strokeStyle = rimGrad;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            ctx.restore();
+            return canvas.toDataURL('image/png');
+        }
+
+        function openViewer(e, pieceId) {
+            if(e) e.stopPropagation();
+            const piece = galleryPieces.find(p => p.id === pieceId);
+            if(!piece) return;
+
+            document.getElementById('viewer-title').innerText = piece.title;
+            document.getElementById('viewer-material').innerText = piece.material;
+
+            viewerModal.classList.add('viewer-active');
+            document.body.classList.add('viewer-open');
+            viewerImg.style.opacity = '0';
+            viewerLoader.style.display = 'none';
+
+            AudioFX.playWhoosh(0.8, true);
+
+            currentFrames = window.allPieceFrames[piece.id] || [];
+            currentFrameIndex = 0;
+
+            if(currentFrames.length > 0) {
+                viewerImg.src = currentFrames[0];
+                viewerImg.style.opacity = '1';
+            }
+        }
+
+        function closeViewer(e) {
+            if(e) e.stopPropagation();
+            viewerModal.classList.remove('viewer-active');
+            document.body.classList.remove('viewer-open');
+            AudioFX.playWhoosh(0.6, false);
+        }
+
+        function openVault(e) {
+            if(!vaultIsOpen && !e.target.closest('[data-close-vault]')) {
+                if(e) e.stopPropagation();
+                AudioFX.playWhoosh(0.8, false);
+                vaultIsOpen = true;
+                document.body.classList.add('vault-open');
+            }
+        }
+
+        function closeVault(e) {
+            if(e) e.stopPropagation();
+            if(vaultIsOpen) {
+                AudioFX.playWhoosh(0.7, true);
+                vaultIsOpen = false;
+                document.body.classList.remove('vault-open');
+            }
+        }
+
+        document.getElementById('edge-vault').addEventListener('click', openVault);
+        document.getElementById('vault-backdrop').addEventListener('click', closeVault);
+
+        function handleDragStart(e) {
+            if(e.target.closest('button') || e.target.closest('a')) return;
+            if(e.type.includes('mouse') && e.button !== 0) return;
+
+            if(currentFrames.length === 0) return;
+
+            if(e.cancelable) e.preventDefault();
+
+            isDragging360 = true;
+            startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            startFrame = currentFrameIndex;
+            cursor.classList.add('c-grab');
+        }
+
+        function handleDragMove(e) {
+            if(!isDragging360) return;
+
+            if(e.cancelable) e.preventDefault();
+
+            const x = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+            const delta = x - startX;
+
+            const frameShift = Math.floor(delta / 15);
+
+            let newIndex = (startFrame + frameShift) % currentFrames.length;
+            if (newIndex < 0) newIndex += currentFrames.length;
+
+            if (newIndex !== currentFrameIndex) {
+                currentFrameIndex = newIndex;
+                viewerImg.src = currentFrames[currentFrameIndex];
+                AudioFX.playHover('light');
+            }
+        }
+
+        function handleDragEnd() {
+            isDragging360 = false;
+            cursor.classList.remove('c-grab');
+        }
+
+        viewerImg.ondragstart = () => false;
+
+        viewerModal.addEventListener('mousedown', handleDragStart);
+        window.addEventListener('mousemove', handleDragMove);
+        window.addEventListener('mouseup', handleDragEnd);
+
+        viewerModal.addEventListener('touchstart', handleDragStart, {passive: false});
+        window.addEventListener('touchmove', handleDragMove, {passive: false});
+        window.addEventListener('touchend', handleDragEnd);
+
+        let scrollThrottle = false;
+        viewerModal.addEventListener('wheel', (e) => {
+            if (!viewerModal.classList.contains('viewer-active')) return;
+            if (currentFrames.length === 0) return;
+
+            if(e.cancelable) e.preventDefault();
+
+            if (scrollThrottle) return;
+            scrollThrottle = true;
+            setTimeout(() => scrollThrottle = false, 35);
+
+            const direction = e.deltaY > 0 ? 1 : -1;
+            let newIndex = (currentFrameIndex + direction) % currentFrames.length;
+            if (newIndex < 0) newIndex += currentFrames.length;
+
+            if (newIndex !== currentFrameIndex) {
+                currentFrameIndex = newIndex;
+                viewerImg.src = currentFrames[currentFrameIndex];
+                AudioFX.playHover('light');
+            }
+        }, {passive: false});
+
+        let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
+        let cursorX = mouseX, cursorY = mouseY;
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        function updateCursorLerp() {
+            cursorX += (mouseX - cursorX) * 0.15; cursorY += (mouseY - cursorY) * 0.15;
+            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+            requestAnimationFrame(updateCursorLerp);
+        }
+        updateCursorLerp();
+
+        document.body.addEventListener('mouseover', e => {
+            if(e.target.closest('button, a, .swatch-box, input, #edge-vault, .olho-magico-container, .magic-eye-mini, #vault-backdrop, .u-node, .side-text, #viewer-360-container')) {
+                cursor.classList.add('c-hover');
+            }
+        });
+        document.body.addEventListener('mouseout', e => {
+            if(e.target.closest('button, a, .swatch-box, input, #edge-vault, .olho-magico-container, .magic-eye-mini, #vault-backdrop, .u-node, .side-text, #viewer-360-container')) {
+                cursor.classList.remove('c-hover');
+            }
+        });
+
+        // REVISÃO TOTAL DO CONTEÚDO BASEADO NO DOCUMENTO FORNECIDO
+        const themesData = {
+            pt: {
+                monochrome: {
+                    label: "01. A BOTTEGA",
+                    title: "A BOT<br>TEGA",
+                    desc: "A Bottega D'Arte é um estúdio de criação e produção cultural que atua na concepção, desenvolvimento e realização de projetos artísticos e institucionais. Há mais de três décadas transforma ideias em experiências culturais estruturadas, conectando linguagem artística, estratégia e comunicação.",
+                    extra: "Fundada em 1991, a Bottega construiu uma trajetória consistente nas áreas de teatro, literatura e artes visuais, ampliando sua atuação para projetos de posicionamento institucional e narrativas de marca por meio da cultura.",
+                    st: "Visão e Identidade",
+                    ss: "Mais do que produzir obras, a Bottega D'Arte estrutura experiências culturais com propósito: projetos pensados para comunicar valores e construir presença simbólica.",
+                    accent: "#B8860B", bg: "#F2ECE4", tx: "#2A2622",
+                    items: [
+                        {t:"Visão artística", d:"Entende a criação artística como um processo de construção de significado. Cada projeto nasce da observação do contexto, da escuta e da interpretação cuidadosa do que precisa ser comunicado. A estética não é tratada como ornamentação, mas como linguagem."},
+                        {t:"Identidade", d:"Nasce do percurso artístico de Domenico Calabrone e constitui o espaço onde sua produção encontra continuidade, organização e presença pública. A prática artística não aparece separada da atuação profissional, mas como sua base."}
+                    ]
+                },
+                vibrant: {
+                    label: "02. ATUAÇÃO",
+                    title: "<span class='smooth-float-1'>ATU</span><br><span class='smooth-float-2'>AÇÃO</span>",
+                    desc: "A atuação da Bottega D'Arte reúne diferentes formas de produção cultural orientadas por uma mesma lógica: transformar ideias em presença pública.",
+                    extra: "Seus projetos abrangem a criação de obras para espaços urbanos e institucionais, a concepção e realização de teatro e ações culturais, o desenvolvimento de publicações e a criação de prêmios concebidos como objetos de significado.",
+                    st: "Frentes de Trabalho",
+                    ss: "Dos projetos especiais às produções recorrentes, a Bottega adequa linguagem, suporte e escala ao contexto em que será percebido.",
+                    accent: "#FF00FF", bg: "#0500FF", tx: "#FFFFFF",
+                    items: [
+                        {t:"Obras e espaço público", d:"Projetos concebidos para dialogar com o ambiente urbano e institucional. As obras são pensadas em relação ao lugar, à circulação e ao significado, transformando presença física em experiência cultural compartilhada."},
+                        {t:"Teatro e produção cultural", d:"Concepção e realização de espetáculos e ações culturais em todas as etapas, da ideia à execução, estruturando narrativa, linguagem e produção para que o projeto aconteça com coerência e consistência técnica."},
+                        {t:"Publicações", d:"Desenvolvimento de livros e materiais editoriais como extensão do projeto cultural. Cada publicação organiza memória, conteúdo e forma gráfica em uma narrativa clara, pensada para permanecer."},
+                        {t:"Prêmios e Projetos", d:"Criação de troféus de reconhecimento concebidos como obras em si, carregando valor simbólico duradouro. Desenvolvimento de projetos especiais pensados para contextos comemorativos e de grande escala."}
+                    ]
+                },
+                light: {
+                    label: "03. PROJETOS",
+                    title: "PRO<br>JETOS",
+                    desc: "Esta seção reúne uma seleção curada de trabalhos representativos da trajetória da Bottega D'Arte. Cada projeto foi escolhido por sintetizar aspectos essenciais de sua atuação.",
+                    extra: "Mais do que um registro cronológico, trata-se de um recorte que permite compreender o método do estúdio: a relação entre ideia, forma e público.",
+                    st: "Recorte Curado",
+                    ss: "Os projetos revelam a continuidade de uma prática orientada por coerência artística e significado cultural.",
+                    accent: "#A84820", bg: "#F7F3EB", tx: "#3E2723",
+                    items: [
+                        {t:"Teatro", d:"<ul class='list-none space-y-1'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Avenida Q</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>39 Degraus</li></ul>"},
+                        {t:"Artes Visuais", d:"<ul class='list-none space-y-1 text-sm'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Assembléia Legislativa de São Paulo</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Parque da Juventude & Parque Vila Lobos</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Praça da Sé - Marco Zero de São Paulo</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>MIS Expérience Museu de Imagem e Som</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Tribunal de Justiça - Av. Ipiranga & Av. Paulista</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Sede Porto Seguro - Av. Rio Branco</li></ul>"},
+                        {t:"Literatura", d:"<ul class='list-none space-y-1 text-sm'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Universo Simbólico da Cruz</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Coleção TV Cultura 50 Anos</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Brasil Toca Choro</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Retratos da Música Brasileira</li></ul>"},
+                        {t:"Troféus", d:"<ul class='list-none space-y-1 text-sm'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Prêmio Shell de Teatro</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Prêmio ABRAPP & Prêmio Ford</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Prêmio Nestlé de Literatura</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Prêmio ABIMAQ</li></ul>"}
+                    ]
+                },
+                elenco: {
+                    label: "04. SERVIÇOS",
+                    title: "<span class='flicker-1'>S</span><span class='flicker-2'>E</span><span class='flicker-3'>R</span><br><span class='flicker-4'>V</span><span class='flicker-5'>I</span><span class='flicker-1'>Ç</span><span class='flicker-2'>O</span><span class='flicker-3'>S</span>",
+                    desc: "A Bottega D'Arte oferece suporte completo para a realização de projetos culturais, desde a definição conceitual até sua concretização.",
+                    extra: "Seu trabalho combina criação artística, organização técnica e entendimento institucional para transformar demandas em propostas viáveis e consistentes.",
+                    st: "Suporte Estruturado",
+                    ss: "Cada serviço é estruturado de acordo com o contexto e os objetivos do projeto, focando em clareza, qualidade e valor duradouro.",
+                    accent: "#C3FF00", bg: "#0D0D0D", tx: "#FFFFFF",
+                    items: [
+                        {t:"Curadoria", d:"Organização conceitual de projetos culturais a partir de contexto, público e objetivo institucional. A curadoria define narrativa, linguagem e coerência do conjunto."},
+                        {t:"Produção cultural", d:"Planejamento e execução completa de ações culturais, da concepção à realização. A Bottega coordena etapas criativas, técnicas e operacionais com previsibilidade e fidelidade à proposta original."},
+                        {t:"Obras sob encomenda", d:"Criação de obras desenvolvidas para um espaço, instituição ou ocasião específica. Cada trabalho parte do diálogo com o solicitante para traduzir valores e identidade em forma artística singular."},
+                        {t:"Projetos incentivados", d:"Estruturação de projetos aptos à captação por leis de incentivo cultural. A Bottega elabora, adequa e acompanha o projeto em todas as etapas, articulando viabilidade técnica e clareza de comunicação."}
+                    ]
+                }
+            },
+            en: {
+                monochrome: {
+                    label: "01. THE BOTTEGA",
+                    title: "THE BOT<br>TEGA",
+                    desc: "Bottega D'Arte is a cultural creation and production studio that operates in the conception, development, and realization of artistic and institutional projects. For over three decades, it has transformed ideas into structured cultural experiences.",
+                    extra: "Founded in 1991, Bottega built a consistent trajectory in theater, literature, and visual arts, expanding its scope to institutional positioning projects and brand narratives through culture.",
+                    st: "Vision and Identity",
+                    ss: "More than producing artworks, Bottega D'Arte structures cultural experiences with purpose: projects designed to communicate values and build symbolic presence.",
+                    accent: "#B8860B", bg: "#F2ECE4", tx: "#2A2622",
+                    items: [
+                        {t:"Artistic Vision", d:"Understands artistic creation as a process of meaning construction. Each project is born from careful observation of context, listening, and interpretation of what needs to be communicated. Aesthetics are not treated as ornamentation, but as language."},
+                        {t:"Identity", d:"Born from Domenico Calabrone's artistic journey, it constitutes the space where his production finds continuity, organization, and public presence. Artistic practice doesn't appear separated from professional work, but as its foundation."}
+                    ]
+                },
+                vibrant: {
+                    label: "02. ACTING",
+                    title: "<span class='smooth-float-1'>ACT</span><br><span class='smooth-float-2'>ING</span>",
+                    desc: "Bottega D'Arte's operations bring together different forms of cultural production guided by the same logic: transforming ideas into public presence.",
+                    extra: "Its projects encompass the creation of works for urban and institutional spaces, the conception and realization of theater and cultural actions, publication development, and meaning-driven award creations.",
+                    st: "Working Fronts",
+                    ss: "From special projects to recurring productions, Bottega adapts language, support, and scale to the perceived context.",
+                    accent: "#FF00FF", bg: "#0500FF", tx: "#FFFFFF",
+                    items: [
+                        {t:"Works and Public Space", d:"Projects designed to dialogue with the urban and institutional environment. Artworks are thought in relation to the place, transforming physical presence into a shared cultural experience."},
+                        {t:"Theater and Production", d:"Conception and realization of shows and cultural actions from idea to execution, structuring narrative, language, and production with artistic coherence and technical consistency."},
+                        {t:"Publications", d:"Development of books and editorial materials as an extension of the cultural project. It organizes memory, content, and graphic form into a clear narrative designed to last."},
+                        {t:"Awards and Special Projects", d:"Creation of recognition trophies conceived as artworks in themselves, carrying lasting symbolic value. On-demand projects that articulate research and creation for institutional contexts."}
+                    ]
+                },
+                light: {
+                    label: "03. PROJECTS",
+                    title: "PRO<br>JECTS",
+                    desc: "This section gathers a curated selection of representative works from Bottega D'Arte's trajectory. Each project synthesizes essential aspects of its operations.",
+                    extra: "More than a chronological record, it is a selection that allows understanding the studio's method: the relationship between idea, form, and audience.",
+                    st: "Curated Selection",
+                    ss: "The projects reveal the continuity of a practice guided by artistic coherence and cultural meaning.",
+                    accent: "#A84820", bg: "#F7F3EB", tx: "#3E2723",
+                    items: [
+                        {t:"Theater", d:"<ul class='list-none space-y-1'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Avenida Q</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>39 Steps</li></ul>"},
+                        {t:"Visual Arts", d:"<ul class='list-none space-y-1 text-sm'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>São Paulo Legislative Assembly</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Youth Park & Vila Lobos Park</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Sé Square - São Paulo Ground Zero</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>MIS Expérience Museum</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Court of Justice - Ipiranga & Paulista Ave.</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Porto Seguro Headquarters</li></ul>"},
+                        {t:"Literature", d:"<ul class='list-none space-y-1 text-sm'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Symbolic Universe of the Cross</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>TV Cultura 50 Years Collection</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Brasil Toca Choro</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Portraits of Brazilian Music</li></ul>"},
+                        {t:"Trophies", d:"<ul class='list-none space-y-1 text-sm'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Shell Theater Award</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>ABRAPP & Ford Award</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Nestlé Literature Award</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>ABIMAQ Award</li></ul>"}
+                    ]
+                },
+                elenco: {
+                    label: "04. SERVICES",
+                    title: "<span class='flicker-1'>S</span><span class='flicker-2'>E</span><span class='flicker-3'>R</span><br><span class='flicker-4'>V</span><span class='flicker-5'>I</span><span class='flicker-1'>C</span><span class='flicker-2'>E</span><span class='flicker-3'>S</span>",
+                    desc: "Bottega offers complete support for the realization of cultural projects, from conceptual definition to technical execution.",
+                    extra: "Its work combines artistic creation, technical organization, and institutional understanding to transform demands into viable and consistent proposals.",
+                    st: "Structured Support",
+                    ss: "Each service provided is structured according to the context and objectives of the project, focusing on clarity, quality, and lasting value.",
+                    accent: "#C3FF00", bg: "#0D0D0D", tx: "#FFFFFF",
+                    items: [
+                        {t:"Artistic Curatorship", d:"Conceptual organization of projects based on context, audience, and institutional objective. Curatorship defines narrative, language, and coherence."},
+                        {t:"Cultural Production", d:"Complete planning and execution of actions, from conception to realization. Bottega coordinates creative, technical, and operational stages with predictability."},
+                        {t:"Commissioned Works", d:"Creation of pieces developed for a specific space, institution, or occasion. Each work starts from dialogue to translate values into singular artistic forms."},
+                        {t:"Incentivized Projects", d:"Structuring technical projects for fundraising through cultural incentive laws. Bottega elaborates and monitors the project articulating technical viability and legal framing."}
+                    ]
+                }
+            }
+        };
+
+        const staticTranslations = {
+            pt: {
+                'nav-acting': 'Atuação', 'nav-projects': 'Projetos', 'nav-services': 'Serviços',
+                'vault-label': 'GALERIA', 'vault-title': 'Galeria', 'btn-close': 'FECHAR',
+                'context-label': 'Contexto',
+                'vault-desc1': 'A Galeria apresenta obras disponíveis para incorporação a coleções e ambientes, reunindo parte significativa da produção do escultor ítalo-brasileiro Domenico Calabrone. As peças são exibidas no espaço da Bottega D\'Arte, permitindo observar sua presença, escala e relação com o entorno.',
+                'vault-footer': 'A diversidade de formas e materiais revela diferentes momentos de uma trajetória artística. Informações sobre disponibilidade podem ser obtidas junto ao estúdio.',
+                'side-contact': 'Contato',
+                'footer-desc': "A Bottega D'Arte está disponível para conversas sobre projetos, obras e parcerias. Entre em contato para apresentar uma ideia, solicitar informações ou agendar uma visita ao espaço.",
+                'footer-note': 'O estúdio retornará com atenção às especificidades de cada proposta.'
+            },
+            en: {
+                'nav-acting': 'Acting', 'nav-projects': 'Projects', 'nav-services': 'Services',
+                'vault-label': 'GALLERY', 'vault-title': 'Gallery', 'btn-close': 'CLOSE',
+                'context-label': 'Context',
+                'vault-desc1': 'The Gallery presents works available for incorporation into collections and environments, gathering a significant part of the production of Italian-Brazilian sculptor Domenico Calabrone. The pieces are exhibited in Bottega D\'Arte\'s space, allowing observation of their presence and scale.',
+                'vault-footer': 'The diversity of forms and materials reveals different moments of an artistic trajectory. Information about availability can be obtained from the studio.',
+                'side-contact': 'Contact',
+                'footer-desc': "Bottega D'Arte is available for conversations about projects, artworks, and partnerships. Get in touch to present an idea, request information, or schedule a visit to the space.",
+                'footer-note': 'The studio will respond carefully to the specificities of each proposal.'
+            }
+        };
+
+        let currentLang = 'pt';
+        let currentThemeKey = 'monochrome';
+        let currentA11yScale = 1;
+
+        function changeFontSize(step) {
+            currentA11yScale += step;
+            if(currentA11yScale < 0.8) currentA11yScale = 0.8;
+            if(currentA11yScale > 1.4) currentA11yScale = 1.4;
+            document.documentElement.style.setProperty('--a11y-scale', currentA11yScale);
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('text-accent', 'opacity-100');
+                btn.classList.add('opacity-40');
+            });
+            document.getElementById('btn-' + lang).classList.remove('opacity-40');
+            document.getElementById('btn-' + lang).classList.add('text-accent', 'opacity-100');
+
+            document.querySelectorAll('[data-t]').forEach(el => {
+                const key = el.getAttribute('data-t');
+                if (staticTranslations[lang][key]) {
+                    el.innerText = staticTranslations[lang][key];
+                }
+            });
+
+            const data = themesData[currentLang][currentThemeKey];
+
+            document.getElementById('u-label-side').innerText = data.label;
+            document.getElementById('u-label-top').innerText = data.label;
+            document.getElementById('h-desc').innerText = data.desc;
+            document.getElementById('h-extra').innerText = data.extra;
+            document.getElementById('s-title').innerText = data.st;
+            document.getElementById('s-subtitle').innerText = data.ss;
+
+            document.getElementById('grid-content').innerHTML = data.items.map((i) => `
+                <div class="group py-6 flex flex-col justify-start reveal-up in-view">
+                    <h3 class="font-display a11y-title mb-4 group-hover:text-accent transition-colors tracking-tight">${i.t}</h3>
+                    <p class="prose-body opacity-70 font-light a11y-reading leading-relaxed">${i.d}</p>
+                </div>
+            `).join('');
+
+            const hTitle = document.getElementById('h-title');
+            if(currentThemeKey === 'monochrome' && lang === 'en') {
+                hTitle.innerHTML = "THE BOT<br>TEGA";
+            } else if (currentThemeKey === 'monochrome') {
+                hTitle.innerHTML = "A BOT<br>TEGA";
+            } else {
+                hTitle.innerHTML = data.title;
+            }
+
+            document.querySelectorAll('.u-node')[0].setAttribute('title', lang === 'en' ? 'The Bottega' : 'A Bottega');
+            document.querySelectorAll('.u-node')[1].setAttribute('title', lang === 'en' ? 'Acting' : 'Atuação');
+            document.querySelectorAll('.u-node')[2].setAttribute('title', lang === 'en' ? 'Projects' : 'Projetos');
+            document.querySelectorAll('.u-node')[3].setAttribute('title', lang === 'en' ? 'Services' : 'Serviços');
+        }
+
+        function scrambleText(id, targetHTML, duration = 800) {
+            const el = document.getElementById(id); if(!el) return;
+            const chars = ["X", "Y", "Z", "—", "BOT", "TE", "GA", "D'", "AR", "///", "[ ]", "§", "|||"];
+            let iter = 0; const steps = 25; const intervalTime = duration / steps;
+            const tokens = []; let temp = ""; let inTag = false;
+            for(let i=0; i<targetHTML.length; i++) {
+                if(targetHTML[i] === '<') { if(temp) tokens.push({type: 'text', val: temp}); temp = '<'; inTag = true; }
+                else if (targetHTML[i] === '>') { temp += '>'; tokens.push({type: 'tag', val: temp}); temp = ''; inTag = false; }
+                else { temp += targetHTML[i]; }
+            }
+            if(temp) tokens.push({type: inTag ? 'tag' : 'text', val: temp});
+
+            const interval = setInterval(() => {
+                let result = tokens.map((token) => {
+                    if (token.type === 'tag') return token.val;
+                    return token.val.split('').map((char, index) => {
+                        if (char === ' ' || char === '\n') return char;
+                        if (index < (iter / steps) * token.val.length) return token.val[index];
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    }).join('');
+                }).join('');
+                el.innerHTML = result;
+                if (iter < (steps * 0.75) && Math.random() > 0.4) AudioFX.playScrambleTick();
+                if(iter >= steps) { clearInterval(interval); el.innerHTML = targetHTML; }
+                iter++;
+            }, intervalTime);
+        }
+
+        const canvas = document.getElementById('liquid-canvas'); const ctx = canvas.getContext('2d'); let fragments = [];
+        function initLiquid(color) {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight; fragments = [];
+            for(let i=0; i<60; i++) fragments.push({ x: Math.random()*canvas.width, y: -100, vx: (Math.random()-0.5)*15, vy: Math.random()*50+30, w: Math.random()*400+100, h: Math.random()*3+1, color, alpha: 1.5 });
+        }
+        function drawLiquid() {
+            ctx.clearRect(0,0,canvas.width,canvas.height); let alive = false;
+            fragments.forEach(f => {
+                if(f.alpha > 0) { alive = true; ctx.globalAlpha = Math.max(0, f.alpha); ctx.fillStyle = f.color; ctx.fillRect(f.x, f.y, f.w, f.h); f.y += f.vy; f.x += f.vx; f.alpha -= 0.04; }
+            });
+            if(alive) requestAnimationFrame(drawLiquid); else canvas.style.opacity="0";
+        }
+
+        let isTransitioning = false; let titleCycleInterval; let orbitDotInterval; let vaultIsOpen = false;
+
+        function setTheme(themeKey, btn) {
+            if (isTransitioning) return; isTransitioning = true; currentThemeKey = themeKey; const data = themesData[currentLang][themeKey];
+            AudioFX.startAmbience(themeKey); AudioFX.playWhoosh(1.2, themeKey === 'monochrome' || themeKey === 'elenco');
+
+            clearInterval(titleCycleInterval); clearInterval(orbitDotInterval);
+
+            document.querySelectorAll('.reality-layer').forEach(s => s.classList.add('shutter-active'));
+            canvas.style.opacity = "1"; initLiquid(data.accent); drawLiquid();
+
+            const hTitle = document.getElementById('h-title'); const bpDot = document.getElementById('blueprint-dot');
+            hTitle.classList.add('hero-entry'); scrambleText('main-logo', "Bottega D'Arte", 600);
+
+            setTimeout(() => {
+                document.body.removeAttribute('style');
+                document.documentElement.removeAttribute('style');
+
+                document.body.classList.remove('theme-vibrant', 'theme-light', 'theme-elenco');
+                if (themeKey !== 'monochrome') document.body.classList.add(`theme-${themeKey}`);
+                cursor.className = `cursor-${themeKey}`;
+
+                document.getElementById('sw-bg').style.setProperty('--sw-color', data.bg);
+                document.querySelector('#sw-bg input').value = data.bg.toLowerCase();
+
+                document.getElementById('sw-tx').style.setProperty('--sw-color', data.tx);
+                document.querySelector('#sw-tx input').value = data.tx.toLowerCase();
+
+                document.getElementById('sw-ac').style.setProperty('--sw-color', data.accent);
+                document.querySelector('#sw-ac input').value = data.accent.toLowerCase();
+
+                document.getElementById('u-label-side').innerText = data.label; document.getElementById('u-label-top').innerText = data.label;
+                document.getElementById('h-desc').innerText = data.desc; document.getElementById('h-extra').innerText = data.extra;
+                document.getElementById('s-title').innerText = data.st; document.getElementById('s-subtitle').innerText = data.ss;
+
+                document.getElementById('grid-content').innerHTML = data.items.map((i, idx) => `
+                    <div class="group py-6 flex flex-col justify-start reveal-up in-view">
+                        <h3 class="font-display a11y-title mb-4 group-hover:text-accent transition-colors tracking-tight">${i.t}</h3>
+                        <p class="prose-body opacity-70 font-light a11y-reading leading-relaxed">${i.d}</p>
+                    </div>
+                `).join('');
+
+                hTitle.classList.remove('hero-entry');
+
+                if (themeKey === 'monochrome') {
+                    let cycleIndex = 0; const cycleWords = currentLang === 'en' ? ["THE BOT<br>TEGA", "D'AR<br>TE"] : ["A BOT<br>TEGA", "D'AR<br>TE"]; bpDot.style.display = 'none';
+                    scrambleText('h-title', cycleWords[0], 1200);
+                    titleCycleInterval = setInterval(() => { cycleIndex = (cycleIndex + 1) % cycleWords.length; scrambleText('h-title', cycleWords[cycleIndex], 1200); }, 3500);
+                } else if (themeKey === 'elenco') {
+                    scrambleText('h-title', data.title, 1200); bpDot.style.display = 'block'; bpDot.className = 'orbit-square';
+                    orbitDotInterval = setInterval(() => { bpDot.className = bpDot.classList.contains('orbit-square') ? 'orbit-organic' : 'orbit-square'; }, 5000);
+                } else {
+                    bpDot.style.display = 'none'; scrambleText('h-title', data.title, 1200);
+                }
+
+                document.querySelectorAll('.u-node').forEach(n => n.classList.remove('active'));
+                if(btn) btn.classList.add('active'); else document.querySelectorAll('.u-node')[['monochrome', 'vibrant', 'light', 'elenco'].indexOf(themeKey)].classList.add('active');
+            }, 450);
+
+            setTimeout(() => { document.querySelectorAll('.reality-layer').forEach(s => s.classList.remove('shutter-active')); isTransitioning = false; }, 1000);
+        }
+
+        function updateLiveColor(varName, value, swatchId) {
+            document.body.style.transition = 'none';
+            document.documentElement.style.transition = 'none';
+
+            document.body.style.setProperty(varName, value);
+            document.documentElement.style.setProperty(varName, value);
+
+            document.getElementById(swatchId).style.setProperty('--sw-color', value);
+            document.querySelector(`#${swatchId} input`).value = value;
+
+            clearTimeout(window.liveColorTimeout);
+            window.liveColorTimeout = setTimeout(() => {
+                document.body.style.transition = '';
+                document.documentElement.style.transition = '';
+            }, 100);
+        }
+
+        function initScrollAnimations() {
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        scrollObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.reveal-up').forEach(el => scrollObserver.observe(el));
+        }
+
+        window.onload = () => {
+            initGallery();
+            initScrollAnimations();
+            setTheme('monochrome');
+            setLanguage('pt');
+        }
+    </script>
+</body>
+</html>
