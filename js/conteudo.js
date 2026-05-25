@@ -504,47 +504,797 @@ const themesData = {
         }
     },
     en: {
-        monochrome: {
-            label: "01. THE BOTTEGA D'ARTE",
-            title: "THE BOTTEGA<br>D'ARTE",
-            desc: "Bottega D'Arte is a cultural creation and production studio that operates in the conception, development, and realization of artistic and institutional projects. For over three decades, it has transformed ideas into structured cultural experiences.",
-            extra: "Founded in 1991, Bottega built a consistent trajectory in theater, literature, and visual arts, expanding its scope to institutional positioning projects and brand narratives through culture.",
-            st: "Vision and Identity",
-            ss: "More than producing artworks, Bottega D'Arte structures cultural experiences with purpose: projects designed to communicate values and build symbolic presence.",
-            accent: "#B8860B", bg: "#F2ECE4", tx: "#2A2622",
-            items: [
-                {t:"Artistic Vision", d:"Understands artistic creation as a process of meaning construction. Each project is born from careful observation of context, listening, and interpretation of what needs to be communicated. Aesthetics are not treated as ornamentation, but as language."},
-                {t:"Identity", d:"Born from Domenico Calabrone's artistic journey, it constitutes the space where his production finds continuity, organization, and public presence. Artistic practice doesn't appear separated from professional work, but as its foundation."}
-            ]
-        },
-        vibrant: {
-            label: "02. EXPERTISE",
-            title: "<span class='smooth-float-1'>EXPER</span><br><span class='smooth-float-2'>TISE</span>",
-            desc: "Bottega D'Arte's operations bring together different forms of cultural production guided by the same logic: transforming ideas into public presence.",
-            extra: "Its projects encompass the creation of works for urban and institutional spaces, the conception and realization of theater and cultural actions, publication development, and meaning-driven award creations.",
-            st: "Working Fronts",
-            ss: "From special projects to recurring productions, Bottega adapts language, support, and scale to the perceived context.",
-            accent: "#FF00FF", bg: "#0500FF", tx: "#FFFFFF",
-            items: [
-                {t:"Works and Public Space", d:"Projects designed to dialogue with the urban and institutional environment. Artworks are thought in relation to the place, transforming physical presence into a shared cultural experience."},
-                {t:"Theater and Production", d:"Conception and realization of shows and cultural actions from idea to execution, structuring narrative, language, and production with artistic coherence and technical consistency."},
-                {t:"Publications", d:"Development of books and editorial materials as an extension of the cultural project. It organizes memory, content, and graphic form into a clear narrative designed to last."},
-                {t:"Awards and Special Projects", d:"Creation of recognition trophies conceived as artworks in themselves, carrying lasting symbolic value. On-demand projects that articulate research and creation for institutional contexts."}
-            ]
-        },
+      monochrome: {
+          label: "01. THE BOTTEGA D'ARTE",
+
+          title: "THE BOTTEGA<br>D'ARTE",
+
+          desc: "A cultural creation and production studio, Bottega D’Arte transforms ideas into structured cultural experiences, combining artistic language, strategy, and communication in projects shaped by purpose and identity.",
+
+          extra: "Founded in 1991, Bottega D’Arte has built a consistent trajectory in theater, publishing, and visual arts, gradually expanding its practice into institutional projects and brand narratives through culture. Its work understands art not merely as expression, but as a language capable of communicating values, generating perception, and strengthening connections between institutions and audiences.\n\nOver more than three decades, the studio has developed both original and commissioned projects in partnership with public and private organizations, supported by cultural incentive programs and production frameworks. Each project is guided by a curatorial and methodological process that integrates research, artistic direction, and executive production, ensuring conceptual coherence and high production standards.",
+
+          st: "Vision & Identity",
+
+          ss: "Cultural production is approached as the intersection of artistic sensitivity, conceptual consistency, and clarity of communication. Art is understood not only as an outcome, but as the structural principle behind each project — shaping experiences capable of creating meaning, presence, and lasting connections between works, institutions, and people.",
+
+          accent: "#B8860B",
+          bg: "#F2ECE4",
+          tx: "#2A2622",
+
+          items: [
+              {
+                  t: "Artistic Vision",
+
+                  d: "Artistic creation is understood as a process of constructing meaning, in which aesthetics, narrative, and experience operate together as a unified language. Each project emerges from careful observation of context and from the search for coherence between concept, form, and audience — transforming art into a sensitive communication tool capable of creating connection, provoking perception, and generating symbolic permanence."
+              },
+
+              {
+                  t: "Identity",
+
+                  d: "Rooted in the artistic trajectory of Domenico Calabrone, Bottega D’Arte establishes itself as the space where his work finds continuity, organization, and public presence. More than a studio, it is a place of creation where authorial practice guides the aesthetic and conceptual direction of each project, bringing together art, culture, and creative production through a distinct and consistent language."
+              }
+          ]
+      },
+      vibrant: {
+          label: "02. EXPERTISE",
+
+          title: "<span class='smooth-float-1'>EXPER</span><br><span class='smooth-float-2'>TISE</span>",
+
+          desc: "Artistic creation and cultural production developed to transform ideas into experiences, presence, and meaning.",
+
+          extra: "Bottega D’Arte’s practice brings together different forms of cultural production guided by a common principle: creating experiences capable of connecting art, communication, and identity. Its projects range from artworks for urban and institutional spaces to theater productions, cultural initiatives, publications, and special commissions developed for public and private organizations.\n\nEach work is conceived through a curatorial approach that considers context, language, medium, and audience. From authorial projects to commissioned productions, Bottega develops cultural solutions that generate symbolic value, strengthen institutional narratives, and expand the relationship between works, spaces, and people.",
+
+          st: "Fields of Practice",
+
+          ss: "From large-scale special commissions to recurring cultural productions, Bottega D’Arte adapts language, medium, and scale to the context in which each project will be experienced.",
+
+          accent: "#FF00FF",
+          bg: "#0500FF",
+          tx: "#FFFFFF",
+
+          items: [
+              {
+                  t: "Artworks & Public Space",
+
+                  d: "Projects conceived to engage with urban and institutional environments. Each work is developed in relation to place, circulation, and the symbolic meaning it establishes within that space — transforming physical presence into a shared cultural experience."
+              },
+
+              {
+                  t: "Theater & Cultural Production",
+
+                  d: "Conception and realization of performances and cultural initiatives across every stage of development, from concept to execution. Bottega structures narrative, artistic language, and production processes to ensure both creative coherence and technical consistency."
+              },
+
+              {
+                  t: "Publications",
+
+                  d: "Development of books and editorial projects as extensions of cultural initiatives. Each publication organizes memory, content, and graphic form into a clear narrative designed to endure and communicate beyond the moment of the event itself."
+              },
+
+              {
+                  t: "Awards",
+
+                  d: "Creation of trophies and recognition pieces conceived as artworks in their own right. The award does not simply represent the event — it embodies its meaning, reinforces its symbolic value, and transforms recognition into a lasting object."
+              },
+
+              {
+                  t: "Special Projects",
+
+                  d: "Custom-developed projects created for specific contexts and institutional demands. Bottega combines research, artistic direction, and production to give cultural form to commemorative, institutional, and large-scale initiatives."
+              }
+          ]
+      },
         light: {
-            label: "03. PROJECTS",
-            title: "PRO<br>JECTS",
-            desc: "This section gathers a curated selection of representative works from Bottega D'Arte's trajectory. Each project synthesizes essential aspects of its operations.",
-            extra: "More than a chronological record, it is a selection that allows understanding the studio's method: the relationship between idea, form, and audience.",
-            st: "Curated Selection",
-            ss: "The projects reveal the continuity of a practice guided by artistic coherence and cultural meaning.",
-            accent: "#A84820", bg: "#F7F3EB", tx: "#3E2723",
+          label: "03. PROJECTS",
+
+          title: "PRO<br>JECTS",
+
+          desc: "This selection brings together projects that reflect different moments, scales, and artistic languages throughout Bottega D’Arte’s trajectory. Each work was chosen for representing key aspects of its practice across distinct forms of cultural production.",
+
+          extra: "Together, these projects reveal the way Bottega articulates creation, language, and context through multiple cultural formats. Despite their differences, the works share the same commitment to artistic coherence, symbolic meaning, and cultural permanence.",
+
+          st: "Selected Projects",
+
+          ss: "The projects reveal the continuity of a practice guided by artistic coherence and cultural significance.",
+
+          accent: "#A84820",
+          bg: "#F7F3EB",
+          tx: "#3E2723",
             items: [
-                {t:"Theater", d:"<ul class='list-none space-y-1'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Avenida Q</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>39 Steps</li></ul>"},
-                {t:"Visual Arts", d:"<ul class='list-none space-y-1 text-sm'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>São Paulo Legislative Assembly</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Youth Park & Vila Lobos Park</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Sé Square - São Paulo Ground Zero</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>MIS Expérience Museum</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Court of Justice - Ipiranga & Paulista Ave.</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Porto Seguro Headquarters</li></ul>"},
-                {t:"Literature", d:"<ul class='list-none space-y-1 text-sm'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Symbolic Universe of the Cross</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>TV Cultura 50 Years Collection</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Brasil Toca Choro</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Portraits of Brazilian Music</li></ul>"},
-                {t:"Trophies", d:"<ul class='list-none space-y-1 text-sm'><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Shell Theater Award</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>ABRAPP & Ford Award</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>Nestlé Literature Award</li><li class='pl-3 relative before:content-[\"•\"] before:absolute before:left-0 before:text-accent'>ABIMAQ Award</li></ul>"}
+              {
+                t: "Theater",
+                projects: [
+                  {
+                    t: "Avenue Q",
+                    img: "img/teatro/avenida-q.png",
+
+                    modal: `
+                      <h2>Avenue Q</h2>
+
+                      <h3>Winner of 3 Tony Awards</h3>
+
+                      <p>
+                        The Brazilian production of AVENUE Q enjoyed extended seasons
+                        in São Paulo and Rio de Janeiro before touring major Brazilian
+                        capitals including Salvador, Belo Horizonte, Curitiba,
+                        Porto Alegre, Recife, and Vitória.
+
+                        Combining adult humor, satire, puppetry, and live actors,
+                        the musical became known for its irreverent tone and its unique
+                        theatrical language, balancing comedy and social commentary
+                        in an unconventional Broadway experience.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Directed by:</strong> Claudio Botelho and Charles Müller</div>
+
+                        <div><strong>Cast:</strong> André Dias, Sabrina Korgut,
+                        Claudia Neto, Fred Silveira, and Renato Rabelo</div>
+                      </div>
+
+                      <div class="modal-actions">
+                        <a href="https://www.youtube.com/watch?v=qhcZqg_wkJY"
+                           class="modal-btn primary"
+                           target="_blank">
+                          Watch Video
+                        </a>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "39 Steps",
+                    img: "img/teatro/39-degraus.jpg",
+
+                    modal: `
+                      <h2>39 Steps</h2>
+
+                      <h3>Based on Hitchcock’s classic thriller</h3>
+
+                      <p>
+                        A fast-paced comedy inspired by Alfred Hitchcock’s classic
+                        suspense film. Performed by only four actors, the production
+                        features more than 150 characters brought to life through
+                        rapid costume changes, physical comedy, and theatrical illusion.
+
+                        The Brazilian adaptation became recognized for its energetic
+                        rhythm, inventive staging, and its ability to transform
+                        suspense into a highly dynamic comedic experience.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Directed by:</strong> Alexandre Reinecke</div>
+
+                        <div><strong>Cast:</strong> Dan Stulbach, Danton Melo,
+                        Henrique Stroeter, and Fabiana Gugli</div>
+                      </div>
+
+                      <div class="modal-actions">
+                        <a href="https://www.youtube.com/watch?v=MsTYM__1-vI"
+                           class="modal-btn primary"
+                           target="_blank">
+                          Watch Video
+                        </a>
+                      </div>
+                    `
+                  }
+                ]
+              },
+              {
+                t: "Trophies",
+
+                projects: [
+                  {
+                    t: "Shell Theater Award",
+
+                    img: "img/trofeus/premio-shell.jpg",
+
+                    modal: `
+                      <h2>Shell Theater Award</h2>
+
+                      <p>
+                        Sculptural trophy created for one of Brazil’s most prestigious
+                        theater awards. Conceived as an object of symbolic permanence,
+                        the piece translates the relationship between artistic excellence,
+                        public recognition, and cultural legacy.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Institution:</strong> Shell Brasil</div>
+
+                        <div><strong>Category:</strong> Performing Arts Award</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "ABRAPP Award",
+
+                    img: "img/trofeus/premio-abrapp.jpg",
+
+                    modal: `
+                      <h2>ABRAPP Award</h2>
+
+                      <p>
+                        Trophy designed for ABRAPP as a symbolic representation
+                        of labor, continuity, and collective construction.
+                        The sculptural form transforms institutional recognition
+                        into a lasting and expressive object.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Institution:</strong> ABRAPP</div>
+
+                        <div><strong>Artwork:</strong> “The Worker”</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Ford Award",
+
+                    img: "img/trofeus/premio-ford.jpg",
+
+                    modal: `
+                      <h2>Ford Award</h2>
+
+                      <p>
+                        Sculptural piece developed for Ford, inspired by movement,
+                        freedom, and transformation. The work combines symbolic form
+                        and institutional identity through an object conceived as both
+                        recognition and artistic statement.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Institution:</strong> Ford</div>
+
+                        <div><strong>Artwork:</strong> “Ford Bird”</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Nestlé Literature Award",
+
+                    img: "img/trofeus/premio-nestle.jpg",
+
+                    modal: `
+                      <h2>Nestlé Literature Award</h2>
+
+                      <p>
+                        Trophy created for the Nestlé Literature Award,
+                        inspired by Calliope, the muse of epic poetry and literature
+                        in Greek mythology. The sculpture connects literary creation,
+                        symbolic memory, and cultural recognition.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Institution:</strong> Nestlé</div>
+
+                        <div><strong>Concept:</strong> Calliope, Muse of Literature</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "ABIMAQ Award",
+
+                    img: "img/trofeus/premio-abimaq.jpg",
+
+                    modal: `
+                      <h2>ABIMAQ Award</h2>
+
+                      <p>
+                        Sculptural project developed for ABIMAQ’s institutional awards.
+                        The piece was conceived to express innovation, industrial identity,
+                        and technological progress through a contemporary visual language.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Institution:</strong> ABIMAQ</div>
+
+                        <div><strong>Category:</strong> Institutional Recognition</div>
+                      </div>
+                    `
+                  }
+                ]
+              },
+              {
+                t: "Visual Arts",
+
+                projects: [
+                  {
+                    t: "Legislative Assembly of São Paulo",
+
+                    img: "img/artes-visuais/01-assembleia-legislativa.jpg",
+
+                    modal: `
+                      <h2>Legislative Assembly of São Paulo</h2>
+
+                      <p>
+                        Site-specific artwork developed for the Legislative Assembly
+                        of the State of São Paulo, conceived in dialogue with the
+                        institutional architecture and public circulation of the space.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Institutional Public Art</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Youth Park",
+
+                    img: "img/artes-visuais/02-parque-juventude.jpg",
+
+                    modal: `
+                      <h2>Youth Park</h2>
+
+                      <p>
+                        Artistic intervention created for Parque da Juventude,
+                        integrating sculpture, landscape, and public experience
+                        within one of São Paulo’s major urban parks.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Urban Space Intervention</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Rua dos Franceses",
+
+                    img: "img/artes-visuais/03-rua-franceses.jpg",
+
+                    modal: `
+                      <h2>Rua dos Franceses</h2>
+
+                      <p>
+                        Sculptural project conceived for a residential and urban context,
+                        establishing a dialogue between contemporary form,
+                        architecture, and everyday circulation.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Urban Sculpture</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Villa-Lobos Park",
+
+                    img: "img/artes-visuais/04-parque-villa-lobos.jpg",
+
+                    modal: `
+                      <h2>Villa-Lobos Park</h2>
+
+                      <p>
+                        Installation conceived in relation to the landscape and spatial
+                        dynamics of Villa-Lobos Park, connecting artistic presence
+                        with the experience of public leisure and movement.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Environmental Installation</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Tietê Ecological Park",
+
+                    img: "img/artes-visuais/05-parque-tiete.jpg",
+
+                    modal: `
+                      <h2>Tietê Ecological Park</h2>
+
+                      <p>
+                        Public artwork developed for Parque Ecológico do Tietê,
+                        exploring the relationship between sculpture,
+                        environmental perception, and open landscape.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Environmental Public Art</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Cláudio Abramo Square",
+
+                    img: "img/artes-visuais/06-praca-claudio-abramo.jpg",
+
+                    modal: `
+                      <h2>Cláudio Abramo Square</h2>
+
+                      <p>
+                        Urban intervention designed for Praça Cláudio Abramo,
+                        conceived to activate the relationship between public space,
+                        movement, and symbolic occupation.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Urban Intervention</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Praça da Sé — São Paulo’s Zero Milestone",
+
+                    img: "img/artes-visuais/07-praca-se.jpg",
+
+                    modal: `
+                      <h2>Praça da Sé</h2>
+
+                      <p>
+                        Artwork created for Praça da Sé, the symbolic geographic center
+                        of São Paulo, engaging with the historical and urban significance
+                        of one of the city’s most iconic public spaces.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Historical Public Space</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Court of Justice — Ipiranga Avenue",
+
+                    img: "img/artes-visuais/08-tribunal-justica.jpg",
+
+                    modal: `
+                      <h2>Court of Justice — Ipiranga Avenue</h2>
+
+                      <p>
+                        Institutional artwork conceived for the Court of Justice building
+                        on Ipiranga Avenue, integrating sculpture and architectural identity.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Institutional Art</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Rua Maranhão — Higienópolis",
+
+                    img: "img/artes-visuais/09-rua-maranhao.jpg",
+
+                    modal: `
+                      <h2>Rua Maranhão — Higienópolis</h2>
+
+                      <p>
+                        Sculptural project developed for a residential environment
+                        in the Higienópolis district, combining artistic intervention
+                        with architectural integration.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Residential Sculpture</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Palácio dos Bandeirantes",
+
+                    img: "img/artes-visuais/10-palacio-bandeirantes.jpg",
+
+                    modal: `
+                      <h2>Palácio dos Bandeirantes</h2>
+
+                      <p>
+                        Artwork developed for the official headquarters of the Government
+                        of the State of São Paulo, conceived in relation to institutional
+                        representation and symbolic permanence.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Government Institution</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "MIS Experience",
+
+                    img: "img/artes-visuais/11-mis-experience.jpg",
+
+                    modal: `
+                      <h2>MIS Experience</h2>
+
+                      <p>
+                        Artistic project presented at MIS Experience,
+                        exploring immersive language and the relationship
+                        between image, space, and perception.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Institution:</strong> Museum of Image and Sound</div>
+
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Serasa Headquarters",
+
+                    img: "img/artes-visuais/12-sede-serasa.jpg",
+
+                    modal: `
+                      <h2>Serasa Headquarters</h2>
+
+                      <p>
+                        Institutional installation developed for Serasa’s corporate headquarters,
+                        integrating contemporary sculpture into the architectural environment.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Corporate Art Project</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Roberto Marinho Residence",
+
+                    img: "img/artes-visuais/13-jardins-roberto-marinho.jpg",
+
+                    modal: `
+                      <h2>Roberto Marinho Residence</h2>
+
+                      <p>
+                        Landscape and sculptural intervention developed for the gardens
+                        of Roberto Marinho’s residence, articulating nature,
+                        architecture, and artistic presence.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> Rio de Janeiro, Brazil</div>
+
+                        <div><strong>Category:</strong> Landscape Intervention</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Federal Regional Court — Paulista Avenue",
+
+                    img: "img/artes-visuais/14-trf-paulista.jpg",
+
+                    modal: `
+                      <h2>Federal Regional Court — Paulista Avenue</h2>
+
+                      <p>
+                        Sculptural work installed within the Federal Regional Court building
+                        on Paulista Avenue, conceived to reinforce institutional identity
+                        through contemporary artistic language.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Institutional Sculpture</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Porto Seguro Headquarters",
+
+                    img: "img/artes-visuais/15-porto-seguro.jpg",
+
+                    modal: `
+                      <h2>Porto Seguro Headquarters</h2>
+
+                      <p>
+                        Sculptural project developed for Porto Seguro’s headquarters,
+                        integrating art, corporate identity, and architectural space.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Location:</strong> São Paulo, Brazil</div>
+
+                        <div><strong>Category:</strong> Corporate Art Project</div>
+                      </div>
+                    `
+                  }
+                ]
+              },
+              {
+                t: "Literature",
+
+                projects: [
+                  {
+                    t: "The Symbolic Universe of the Cross",
+
+                    img: "img/literatura/universo-simbolico-cruz.jpg",
+
+                    modal: `
+                      <h2>The Symbolic Universe of the Cross</h2>
+
+                      <p>
+                        The cross is a symbol that has existed since the earliest
+                        stages of human civilization. A form of countless meanings
+                        and interpretations, it transcends Christianity despite being
+                        widely recognized as one of its central visual symbols.
+
+                        Through mythology, religion, philosophy, and visual culture,
+                        the book explores the cross as a symbolic structure shared
+                        by multiple civilizations throughout history.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Author:</strong> Dalva de Abrantes</div>
+
+                        <div><strong>Publisher:</strong> WMF Martins Fontes</div>
+
+                        <div><strong>Year:</strong> 2023</div>
+
+                        <div><strong>Format:</strong> Paperback · 801 pages · 606 images</div>
+                      </div>
+
+                      <div class="modal-actions">
+                        <a href="https://www.amazon.com.br/Universo-simb%C3%B3lico-cruz-Dalva-Abrantes/dp/B0CMXVTTHR/ref=asc_df_B0CMXVTTHR?mcid=270995b1d34137ac887d8c20a951e213&tag=googleshopp00-20&linkCode=df0&hvadid=709883381515&hvpos=&hvnetw=g&hvrand=17567985609141390157&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9207971&hvtargid=pla-2320363402927&psc=1&language=pt_BR&gad_source=1"
+                           target="_blank"
+                           class="modal-btn primary">
+                           Buy on Amazon
+                        </a>
+
+                        <a href="https://veja.abril.com.br/coluna/conta-gotas/pelo-sinal-da-cruz-o-que-esta-por-tras-de-um-simbolo-universal/"
+                           target="_blank"
+                           class="modal-btn">
+                           Read Review
+                        </a>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Portraits of Brazilian Music",
+
+                    img: "img/literatura/retratos-musica-brasileira.jpg",
+
+                    modal: `
+                      <h2>Portraits of Brazilian Music</h2>
+
+                      <p>
+                        Published as part of TV Cultura’s 50th anniversary collection,
+                        the book documents fourteen years of portraits captured
+                        during performances on the television program Sr. Brasil.
+
+                        Through photography, the publication reveals the diversity,
+                        memory, and visual identity of Brazilian popular music.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Author:</strong> Pierre Yves Refalo</div>
+
+                        <div><strong>Publisher:</strong> Fundação Padre Anchieta / TV Cultura</div>
+
+                        <div><strong>Year:</strong> 2019</div>
+
+                        <div><strong>Format:</strong> Hardcover Photography Edition</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "TV Cultura — 50 Years",
+
+                    img: "img/literatura/tv-cultura-50-anos.jpg",
+
+                    modal: `
+                      <h2>TV Cultura — 50 Years</h2>
+
+                      <p>
+                        Commemorative publication celebrating the history and cultural
+                        legacy of TV Cultura, one of Brazil’s most important public
+                        broadcasting institutions.
+
+                        The book revisits landmark programs, personalities,
+                        and moments that shaped generations of educational
+                        television in Brazil.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Institution:</strong> Fundação Padre Anchieta</div>
+
+                        <div><strong>Year:</strong> 2019</div>
+
+                        <div><strong>Format:</strong> Hardcover Edition</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Children’s Almanac — TV Cultura 50 Years",
+
+                    img: "img/literatura/almanaque-infantil.jpg",
+
+                    modal: `
+                      <h2>Children’s Almanac</h2>
+
+                      <p>
+                        Anniversary publication created for TV Cultura’s 50th anniversary,
+                        dedicated to the children’s universe that shaped generations
+                        of Brazilian audiences.
+
+                        Inspired by the phrase “Sit down, here comes a story,”
+                        the almanac revisits iconic characters and programs
+                        from Brazilian educational television.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Authors:</strong> Sandro Casarini and Luiz Lentini</div>
+
+                        <div><strong>Publisher:</strong> Fundação Padre Anchieta</div>
+
+                        <div><strong>Year:</strong> 2019</div>
+
+                        <div><strong>Format:</strong> Illustrated Paperback Edition</div>
+                      </div>
+                    `
+                  },
+
+                  {
+                    t: "Brazil Plays Choro",
+
+                    img: "img/literatura/brasil-toca-choro.jpg",
+
+                    modal: `
+                      <h2>Brazil Plays Choro</h2>
+
+                      <p>
+                        Editorial project dedicated to the preservation and celebration
+                        of choro, one of the foundational genres of Brazilian music.
+
+                        The publication explores the history, musicians,
+                        and cultural legacy of chorinho through images,
+                        narratives, and musical memory.
+                      </p>
+
+                      <div class="modal-meta">
+                        <div><strong>Institution:</strong> Fundação Padre Anchieta</div>
+
+                        <div><strong>Year:</strong> 2017</div>
+
+                        <div><strong>Format:</strong> Illustrated Hardcover Edition</div>
+                      </div>
+                    `
+                  }
+                ]
+              }
             ]
         },
         elenco: {

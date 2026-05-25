@@ -32,12 +32,7 @@ function setLanguage(lang) {
     document.getElementById('s-title').innerText = data.st;
     document.getElementById('s-subtitle').innerText = data.ss;
 
-    document.getElementById('grid-content').innerHTML = data.items.map((i) => `
-        <div class="group py-6 flex flex-col justify-start reveal-up in-view">
-            <h3 class="font-display a11y-title mb-4 group-hover:text-accent transition-colors tracking-tight">${i.t}</h3>
-            <p class="prose-body opacity-70 font-light a11y-reading leading-relaxed">${i.d}</p>
-        </div>
-    `).join('');
+    document.getElementById('grid-content').innerHTML = renderGridItems(data);
 
     const hTitle = document.getElementById('h-title');
     if(currentThemeKey === 'monochrome' && lang === 'en') {
